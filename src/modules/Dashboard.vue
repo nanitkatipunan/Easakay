@@ -1,39 +1,55 @@
 <template>
-  <div>
-    <div id="card">
-      <b-card no-body class="overflow-hidden" style="max-width: 1000px;">
-        <b-card-img id="image" :src="require('assets/dash.jpg')" class="rounded-0"></b-card-img>
-        <hr>
-        <b-card-text class="text-center">
-          <h1>Hi {{username}}</h1>
-          <h3>Welcome to Easakay!</h3>
-        </b-card-text>
-        <hr>
-      </b-card>
-    </div>
-  </div>
+ <b-jumbotron bg-variant="info" text-variant="white" border-variant="dark">
+
+ 
+ <b-container class="bv-example-row">
+  <b-row>
+    <b-col> <div class="col-md-12">
+    <label for="input-live">From</label>
+    <b-form-input
+      id="input-live"
+      v-model="name"
+      aria-describedby="input-live-help input-live-feedback"
+    ></b-form-input>
+</div></b-col>
+    <b-col> <div class="col-md-12">
+    <label for="input-live">To</label>
+    <b-form-input
+      id="input-live"
+      v-model="name"
+      aria-describedby="input-live-help input-live-feedback"
+    ></b-form-input>
+</div></b-col>
+  <b-col>
+<div class="col-md-12">
+    <label for="input-live">Depart Time</label>
+    <b-form-input
+      id="input-live"
+      v-model="name"
+      aria-describedby="input-live-help input-live-feedback"
+    ></b-form-input>
+</div>
+</b-col>
+
+
+  </b-row><br>
+
+
+</b-container>
+</b-jumbotron>
+
 </template>
-
-<style scoped lang="scss">
-@import "assets/style.scss";
-#card {
-  margin-left: $margin-left !important;
-  margin-top: $margin-top !important;
-}
-
-#image {
-  width: $dashwidth !important;
-  height: $dashheight !important;
-}
-</style>
-
 <script>
-export default {
-  name: "card",
-  data() {
-    return {
-      username: sessionStorage.getItem("Username")
-    };
+  export default {
+    computed: {
+      nameState() {
+        return this.name.length > 2 ? true : false
+      }
+    },
+    data() {
+      return {
+        name: ''
+      }
+    }
   }
-};
 </script>
