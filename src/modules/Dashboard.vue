@@ -38,19 +38,18 @@
           </div>
         </b-col>
       </b-row>
-      <br>
-    </b-container>
-    <div>
-      <b-dropdown id="dropdown-1" text="Dropdown Button" class="m-md-2">
-        <b-dropdown-item>First Action</b-dropdown-item>
-        <b-dropdown-item>Second Action</b-dropdown-item>
-        <b-dropdown-item>Third Action</b-dropdown-item>
-        <b-dropdown-divider></b-dropdown-divider>
-        <b-dropdown-item active>Active action</b-dropdown-item>
-        <b-dropdown-item disabled>Disabled action</b-dropdown-item>
-      </b-dropdown>
-    </div>
+
     
+    <b-row>
+    <b-col>
+      <b-dropdown id="dropdown-dropright" dropright text="Passengers" class="m-md-2">
+        <b-dropdown-item>Adult</b-dropdown-item>
+        <b-dropdown-item>Student</b-dropdown-item>
+        <b-dropdown-item>Senior Citizen</b-dropdown-item>
+      </b-dropdown>
+      </b-col>
+      </b-row>
+    </b-container>
   </b-jumbotron>
 </template>
 
@@ -58,7 +57,7 @@
 <style scoped>
 #header {
   margin-top: 1%;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
   padding-top: 2%;
   border: solid green 2px;
 }
