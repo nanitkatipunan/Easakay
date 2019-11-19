@@ -1,8 +1,6 @@
 <template>
   <div id="container">
-    <div class="jumbotron">
-      <h1>Update Information</h1>
-    </div>
+      <center><h1>Update Information</h1></center>
     <div class="row loginPage">
       <div class="col-md-4"></div>
       <div class="col-md-4">
@@ -41,11 +39,7 @@
 
 <style scoped lang="scss">
 @import "assets/style.scss";
-.jumbotron{
-    padding: $jumbotronpadding !important;
-    text-align: $text-align !important;
-    background-color:$jumbo !important;
-}
+
 </style>
 <script>
 import ROUTER from "router";

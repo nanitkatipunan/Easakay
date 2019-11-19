@@ -32,7 +32,7 @@
 .jumbotron{
     padding: $jumbotronpadding !important;
     text-align: $text-align !important;
-    background-color:$jumbo !important;
+
 }
 #card {
   margin-top: $cardmargintop !important;

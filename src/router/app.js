@@ -1,12 +1,20 @@
 export default {
     routes: [{
-        path: '/LandingPage',
-        name: 'home',
+        path: '/',
+        name: 'LandingPage',
         component: resolve => require(['modules/LandingPage.vue'], resolve),
         meta: {
             tokenRequired: false
         }
     },
+    // {
+    //     path: '/Home',
+    //     name: 'home',
+    //     component: resolve => require(['modules/Dashboard.vue'], resolve),
+    //     meta: {
+    //         tokenRequired: false
+    //     }
+    // },
         {
         path: '/Login',
         name: 'login',
@@ -47,14 +55,14 @@ export default {
             tokenRequired: false
         }
     },
-    {
-        path: '/Timeline',
-        name: 'Timeline',
-        component: resolve => require(['modules/Timeline.vue'], resolve),
-        meta: {
-            tokenRequired: false
-        }
-    },
+    // {
+    //     path: '/Timeline',
+    //     name: 'Timeline',
+    //     component: resolve => require(['modules/Timeline.vue'], resolve),
+    //     meta: {
+    //         tokenRequired: false
+    //     }
+    // },
     {
         path: '/PersonalInfo',
         name: 'PersonalInfo',
