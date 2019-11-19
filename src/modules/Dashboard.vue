@@ -65,7 +65,7 @@
           <hr />
         </div>
         <div class="col-sm-2">
-          <h5 class="text-center">30 Seats</h5>
+          <h5 class="text-center">50 Seats</h5>
           <hr /><br><br>
           <b-form id="b-getTicket">
               <b-button variant="outline-primary">Get Ticket</b-button>
@@ -89,6 +89,22 @@
 
           <p class="text-center">Sunrays 4521 . AirCon</p>
         </div>
+        <div class="col-sm-3">
+          <h5 class="text-center">Sunrays Bus Lines</h5>
+          <hr /><br>
+            <p>Departure Time: 05:00 PM <br>Arrival Time: 07:30 PM <br>Date: November 10, 2019</p>
+        </div>
+        <div class="col-sm-5">
+          <h5 class="text-center">South Bus Terminal - Argao</h5>
+          <hr />
+        </div>
+        <div class="col-sm-2">
+          <h5 class="text-center">30 Seats</h5>
+          <hr /><br><br>
+          <b-form id="b-getTicket">
+              <b-button variant="outline-primary">Get Ticket</b-button>
+            </b-form>
+        </div>
       </b-row>
     </div>
     <hr />
@@ -105,6 +121,22 @@
           ></b-img>
 
           <p class="text-center">Ceres Tours 871 . AirCon</p>
+        </div>
+        <div class="col-sm-3">
+          <h5 class="text-center">Ceres Liner</h5>
+          <hr /><br>
+            <p>Departure Time: 01:00 PM <br>Arrival Time: 03:30 PM <br>Date: November 10, 2019</p>
+        </div>
+        <div class="col-sm-5">
+          <h5 class="text-center">South Bus Terminal - Argao</h5>
+          <hr />
+        </div>
+        <div class="col-sm-2">
+          <h5 class="text-center">30 Seats</h5>
+          <hr /><br><br>
+          <b-form id="b-getTicket">
+              <b-button variant="outline-primary">Get Ticket</b-button>
+            </b-form>
         </div>
       </b-row>
     </div>
