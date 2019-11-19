@@ -1,7 +1,7 @@
 <template>
   <div fixed="top">
-    <b-card no-body>
-      <b-card-header header-tag="nav" class="bg-success">
+    <b-card no-body >
+      <b-card-header header-tag="nav" class="bg-success" >
         <b-nav class="card-header tabs">
           <b-nav id="Logotext" v-if="auth.user != null">Easakay</b-nav>
 
