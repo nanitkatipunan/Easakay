@@ -2,16 +2,17 @@
   <div id="card">
     <b-card-body>
       <div class="circular" v-bind:style="{ 'background-image': 'url(  )' }">
-        <p id="p" class="text-center">"Value everyone's comfort in the world of travel"</p>
-        <button id="show-btn" @click="$bvModal.show('bv-modal-example')">Learn more</button>
+        <!-- <b-img :src="require('@/assets/NewProject.png')"></b-img> -->
+        <p id="p" class="text-center">"Value everyone's comfort <br/> in the world <br/>of travel"</p>
+        <center><button id="show-btn" @click="$bvModal.show('bv-modal-example')">Learn more</button></center>
         <b-modal id="bv-modal-example" hide-footer>
           <template v-slot:modal-title>
-           Easakay
+           <router-link to="/">Easakay</router-link>
           </template>
           <div class="d-block text-center">
-            <h3>Easakay is a mobile web application that caters the need</h3>
+            <h3>Easakay is a web application that caters the need</h3>
           </div>
-          <b-button class="bg-danger" block @click="$bvModal.hide('bv-modal-example')" >Close Me</b-button>
+          <b-button class="bg-success" block @click="$bvModal.hide('bv-modal-example')" >Close Me</b-button>
         </b-modal>
       </div>
     </b-card-body>
@@ -19,19 +20,19 @@
 </template>
 <style> 
 #p {
-  font-size: 80px;
+  font-size: 50px;
   margin-top: 10%;
-  font-style: Impact, Charcoal, sans-serif;
-  font-weight: bold;
+  font-style: arial;
+  
 }
 #show-btn {
   background-color: green;
-  margin-left: 45%;
   color: white;
   padding-left: 2%;
   padding-right: 2%;
   padding-top: 1%;
   padding-bottom: 1%;
+  border-radius: 10%;
 }
 div {
   /* background:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvn1vhmcUVSTg3nxpYw6rfKXaApuXrjSnv4t62ozKeet_xUaceoQ&s);*/

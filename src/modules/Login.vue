@@ -1,5 +1,6 @@
 <template>
   <div id="background" style="padding-top:20px;">
+    <Navigation/>
     <center>
       <div id="divLogin" class="col-sm-3 my-sm-5 border rounded" style="margin-left:0.5%">
         <form class="container">
@@ -52,10 +53,13 @@
 }
 </style>
 <script>
-
+import Navigation from '@/components/frame/Navigation'
 import AUTH from 'services/auth'
 import jquery from "jquery";
 export default {
+  components:{
+    Navigation
+  },
   data() {
     AUTH
     return {
