@@ -68,7 +68,7 @@
           <h5 class="text-center">50 Seats</h5>
           <hr /><br><br>
           <b-form id="b-getTicket">
-              <b-button variant="outline-primary">Get Ticket</b-button>
+              <b-button variant="outline-success">Get Ticket</b-button>
             </b-form>
         </div>
       
@@ -102,7 +102,7 @@
           <h5 class="text-center">30 Seats</h5>
           <hr /><br><br>
           <b-form id="b-getTicket">
-              <b-button variant="outline-primary">Get Ticket</b-button>
+              <b-button variant="outline-success">Get Ticket</b-button>
             </b-form>
         </div>
       </b-row>
@@ -135,7 +135,7 @@
           <h5 class="text-center">30 Seats</h5>
           <hr /><br><br>
           <b-form id="b-getTicket">
-              <b-button variant="outline-primary">Get Ticket</b-button>
+              <b-button variant="outline-success">Get Ticket</b-button>
             </b-form>
         </div>
       </b-row>

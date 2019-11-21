@@ -25,8 +25,8 @@
         <b-nav-item v-b-popover.hover.top="" title="Home">
             <i class="fas fa-home  fa-lg"></i>
         </b-nav-item>
-        <b-nav-item>
-           <i class="fas fa-map-marker-alt fa-lg"  v-b-popover.hover.top="" title="Track Location"></i>
+    <b-nav-item>
+         <i class="fas fa-map-marker-alt fa-lg"  v-b-popover.hover.top=""  @click="redirect('/GoogleMap')" title="Track Location"></i>
         </b-nav-item>
         <b-nav-item>
            <i class="fas fa-bell fa-lg"  v-b-popover.hover.top="" title="Notification"></i>

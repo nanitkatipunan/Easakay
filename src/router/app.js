@@ -1,5 +1,16 @@
 export default {
     routes: [{
+        path: '/GoogleMap',
+        name: 'googlemap',
+        component: resolve => require(['modules/GoogleMap.vue'], resolve),
+        meta: {
+            tokenRequired: false
+        }
+    },
+        
+        
+        
+        {
         path: '/',
         name: 'LandingPage',
         component: resolve => require(['modules/LandingPage.vue'], resolve),
