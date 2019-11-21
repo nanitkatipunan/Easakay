@@ -52,7 +52,7 @@ export default {
         name: 'Subjects',
         component: resolve => require(['modules/Subjects.vue'], resolve),
         meta: {
-            tokenRequired: false
+            tokenRequired: true
         }
     },
     // {

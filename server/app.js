@@ -1,61 +1,77 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-const cors = require('cors');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 8082
+const bodyParser = require('body-parser');
+const cors = require('cors')
+const mongoose = require('mongoose');
+const User = require('./model/user.model')
+const config = require('./key')
+const jwt = require('jsonwebtoken')
 
-
-//connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/sampledb');
-var db = mongoose.connection;
-
-//handle mongo error
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  // we're connected!
-});
-
-//use sessions for tracking logins
-app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false,
-  store: new MongoStore({
-    mongooseConnection: db
-  })
-}));
-app.use(cors());
-
-// parse incoming requests
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
+
+let url = 'mongodb://localhost:27017/easakayDB'
 
 
-// serve static files from template
-app.use(express.static(__dirname + '/src'));
 
-// include routes
-var routes = require('../routes/router');
-app.use('/', routes);
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('connedted to DB')
+    })
+    .catch(err => {
+        console.log(err)
+    })
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('File Not Found');
-  err.status = 404;
-  next(err);
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function (req, res) {
+    res.send('hello world')
 });
 
-// error handler
-// define as the last app.use callback
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.send(err.message);
+app.post('/user/register', (req, res) => {
+    console.log(req.body)
+    let user = new User(req.body.data)
+    user.save()
+        .then(() => {
+            console.log('saved')
+            res.json({ message: "saved" })
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+
+});
+
+app.post('/user/login', (req, res) => {
+    console.log(req.body)
+    User.findOne({ username: req.body.data.username, password: req.body.data.password })
+        .then((data) => {
+            if (data) {
+                var token = jwt.sign({
+                    _id: data._id
+                }, config.secret, {
+                        expiresIn: 86400
+                    });
+                res.json({token:token,
+                    AUTH: true
+                })
+            } else {
+                res.send('not found')
+            }
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+
 });
 
 
-// listen on port 3000
-app.listen(3000, function () {
-  console.log('Express app listening on port 3000');
-});
+
+app.listen(port, (err) => {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log('connected ' + port)
+    }
+})

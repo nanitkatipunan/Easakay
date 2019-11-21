@@ -16,7 +16,7 @@
               name="username"
               class="form-control"
               placeholder="Enter Username"
-            > 
+            >
             <br>
           </div>
           <br>
@@ -36,7 +36,8 @@
           <button id="btnLogin" class="btn btn-outline-primary" @click="submit">
             <h6>Login</h6>
           </button>
-          <br><br>
+          <br>
+          <br>
         </form>
       </div>
     </center>
@@ -53,15 +54,16 @@
 }
 </style>
 <script>
-import Navigation from '@/components/frame/Navigation'
-import AUTH from 'services/auth'
+import Navigation from "@/components/frame/Navigation";
+import axios from "axios";
+import AUTH from "services/auth";
 import jquery from "jquery";
 export default {
-  components:{
+  components: {
     Navigation
   },
   data() {
-    AUTH
+    AUTH;
     return {
       username: "",
       password: ""
@@ -70,23 +72,45 @@ export default {
   methods: {
     submit: function(e) {
       e.preventDefault();
-      AUTH.login(this.username, this.password)
-  
-      let link= `http://localhost:3000/db/retrieve/${this.username}/${this.password}`;
-      jquery
-        .ajax({
-          url: link,
-          method: 'GET',
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
+      AUTH.login(this.username, this.password);
+
+      //let link= `http://localhost:8082/user/login`;
+      let data = {
+        username: this.username,
+        password: this.password
+      };
+      axios
+        .post("http://localhost:8082/user/login", {
+          data
         })
         .then(response => {
-          alert(response.username);
+          let AUTH = response.data.AUTH;
+          //localStorage.setItem('user',JSON.stringify(response.data.data))
+          localStorage.setItem("jwt", response.data.token);
+          if (localStorage.getItem("jwt") != null) {
+            if (AUTH == true) {
+              this.$router.push("/Dashboard");
+            }
+          }else{
+             this.$router.push("/");
+          }
         })
-       
-  }
-
+        .catch(err => {
+          console.log('errorrrr ')
+          console.log(err);
+        });
+      // jquery
+      //   .ajax({
+      //     url: link,
+      //     method: 'GET',
+      //     headers: {
+      //       'Access-Control-Allow-Origin': '*'
+      //     }
+      //   })
+      //   .then(response => {
+      //     alert(response.username);
+      //   })
+    }
   }
 };
 </script>

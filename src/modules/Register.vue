@@ -7,8 +7,8 @@
             <h2 class="card-header">Register</h2>
           </center>
           <form @submit.prevent="handleSubmit">
-            <br />
-            <br />
+            <br>
+            <br>
             <div class="form-group">
               <input
                 type="text"
@@ -18,13 +18,13 @@
                 class="form-control"
                 placeholder="Username"
                 :class="{ 'is-invalid': submitted && $v.user.username.$error }"
-              />
+              >
               <div
                 v-if="submitted && !$v.user.username.required"
                 class="invalid-feedback"
               >Username is required</div>
             </div>
-            <br />
+            <br>
             <div class="form-group">
               <input
                 type="email"
@@ -34,13 +34,13 @@
                 class="form-control"
                 placeholder="Email Address"
                 :class="{ 'is-invalid': submitted && $v.user.email.$error }"
-              />
+              >
               <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
                 <span v-if="!$v.user.email.required">Email is required</span>
                 <span v-if="!$v.user.email.email">Email is invalid</span>
               </div>
             </div>
-            <br />
+            <br>
             <div class="form-group">
               <input
                 type="password"
@@ -50,13 +50,13 @@
                 class="form-control"
                 placeholder="Password"
                 :class="{ 'is-invalid': submitted && $v.user.password.$error }"
-              />
+              >
               <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
                 <span v-if="!$v.user.password.required">Password is required</span>
                 <span v-if="!$v.user.password.minLength">Password must be at least 8 characters</span>
               </div>
             </div>
-            <br />
+            <br>
             <div class="form-group">
               <input
                 type="password"
@@ -66,27 +66,27 @@
                 class="form-control"
                 placeholder="Confirm Password"
                 :class="{ 'is-invalid': submitted && $v.user.confirmPassword.$error }"
-              />
+              >
               <div v-if="submitted && $v.user.confirmPassword.$error" class="invalid-feedback">
                 <span v-if="!$v.user.confirmPassword.required">Confirm Password is required</span>
                 <span v-else-if="!$v.user.confirmPassword.sameAsPassword">Passwords must match</span>
               </div>
             </div>
-            <br />
+            <br>
             <div class="form-group">
               <center>
                 <button class="btn btn-outline-primary">Register</button>
               </center>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
           </form>
         </div>
       </div>
@@ -107,7 +107,8 @@
 <script>
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 import AUTH from "services/auth";
-import axios from "axios";
+import axios from 'axios'
+
 export default {
   name: "app",
   data() {
@@ -138,20 +139,22 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
+      let data = {
+        username: this.user.username,
+        password: this.user.password,
+        email: this.user.email
+      }
+      axios.post('http://localhost:8082/user/register', {
+        data
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(err =>{
+        console.log(err)
+      })
 
       AUTH.register(this.user.username, this.user.password);
-     axios.post("http://localhost:3000/create");
-            // response => {
-            //   if (response.data.message == "ok") {
-            //     console.log("ok");
-            //     router.push({ path: "/login" });
-            //   }
-            // },
-            // err => {
-            //   console.log(err);
-              
-            // }
-          
     }
   }
 };
