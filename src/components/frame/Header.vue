@@ -21,9 +21,9 @@
           ><b-button variant="success"> Sign Up </b-button></b-nav>
     
       <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto" v-if="auth.user != null" @click="goToHome">
+      <b-navbar-nav class="ml-auto" v-if="auth.user != null" >
         <b-nav-item v-b-popover.hover.top="" title="Home">
-            <i class="fas fa-home  fa-lg"></i>
+            <i @click="goToHome" class="fas fa-home  fa-lg"></i>
         </b-nav-item>
     <b-nav-item>
          <i class="fas fa-map-marker-alt fa-lg"  v-b-popover.hover.top=""  @click="redirect('/GoogleMap')" title="Track Location"></i>
