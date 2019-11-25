@@ -21,8 +21,8 @@
           ><b-button variant="success"> Sign Up </b-button></b-nav>
     
       <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto" v-if="auth.user != null" @click="goToHome">
-        <b-nav-item v-b-popover.hover.top="" title="Home">
+      <b-navbar-nav class="ml-auto" v-if="auth.user != null" >
+        <b-nav-item v-b-popover.hover.top="" title="Home" @click="goToHome">
             <i class="fas fa-home  fa-lg"></i>
         </b-nav-item>
     <b-nav-item>
