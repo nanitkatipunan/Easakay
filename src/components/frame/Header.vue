@@ -28,9 +28,18 @@
     <b-nav-item>
          <i class="fas fa-map-marker-alt fa-lg"  v-b-popover.hover.top=""  @click="redirect('/GoogleMap')" title="Track Location"></i>
         </b-nav-item>
-        <b-nav-item>
+        <!-- <b-nav-item>
            <i class="fas fa-bell fa-lg"  v-b-popover.hover.top="" title="Notification"></i>
-        </b-nav-item>
+
+        </b-nav-item> -->
+        <b-nav-item-dropdown right>
+          <!-- Using 'button-content' slot -->
+          <template v-slot:button-content>
+            <i class="fas fa-bell fa-lg"  v-b-popover.hover.top="" title="Notification"></i>
+          </template>
+          <b-dropdown-item href="#"> </b-dropdown-item>
+          <b-dropdown-item></b-dropdown-item>
+        </b-nav-item-dropdown>
 
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->

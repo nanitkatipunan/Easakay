@@ -18,14 +18,14 @@ export default {
             tokenRequired: false
         }
     },
-    // {
-    //     path: '/Home',
-    //     name: 'home',
-    //     component: resolve => require(['modules/Dashboard.vue'], resolve),
-    //     meta: {
-    //         tokenRequired: false
-    //     }
-    // },
+    {
+        path: '/Notification',
+        name: 'notification',
+        component: resolve => require(['modules/Notification.vue'], resolve),
+        meta: {
+            tokenRequired: false
+        }
+    },
         {
         path: '/Login',
         name: 'login',
