@@ -70,56 +70,21 @@ export default {
     };
   },
   methods: {
-    // submit: function(e) {
-    //   e.preventDefault();
-    //   AUTH.login(this.username, this.password);
-
-    //   //let link= `http://localhost:8082/user/login`;
-    //   let data = {
-    //     username: this.username,
-    //     password: this.password
-    //   };
-    //   axios
-    //     .post("http://localhost:8082/user/login", {
-    //       data
-    //     })
-    //     .then(response => {
-    //       let AUTH = response.data.AUTH;
-    //       //localStorage.setItem('user',JSON.stringify(response.data.data))
-    //       localStorage.setItem("jwt", response.data.token);
-    //       if (localStorage.getItem("jwt") != null) {
-    //         if (AUTH == true) {
-    //           this.$router.push("/Dashboard");
-    //         }
-    //       } else {
-    //         this.$router.push("/");
-    //       }
-    //     })
-    //     .catch(err => {
-    //       console.log("errorrrr ");
-    //       console.log(err);
-    //     });
-    // }
-
-    handleSubmit(e) {
+    submit: function(e) {
       e.preventDefault();
-      this.submitted = true;
-      // stop here if form is invalid
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
-      }
+      AUTH.login(this.username, this.password);
+
+      //let link= `http://localhost:8082/user/login`;
       let data = {
-        username: this.user.username,
-        password: this.user.password,
-       
-      }
-      axios.post('http://localhost:8082/user/login', {
-        data
-      })
-      .then(response => {
-        console.log(response)
-        let AUTH = response.data.AUTH;
+        username: this.username,
+        password: this.password
+      };
+      axios
+        .post("http://localhost:8082/user/login", {
+          data
+        })
+        .then(response => {
+          let AUTH = response.data.AUTH;
           //localStorage.setItem('user',JSON.stringify(response.data.data))
           localStorage.setItem("jwt", response.data.token);
           if (localStorage.getItem("jwt") != null) {
@@ -129,16 +94,15 @@ export default {
           } else {
             this.$router.push("/");
           }
-        
-      })
-      .catch(err =>{
-        console.log(err)
-      })
+        })
+        .catch(err => {
+          console.log("errorrrr ");
+          console.log(err);
+        });
+    }
 
-      AUTH.login(this.username, this.password);
-      
     }
   
-  }
+  
 };
 </script>

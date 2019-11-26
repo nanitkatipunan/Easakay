@@ -46,19 +46,19 @@
     <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
       <b-row>
         <div class="col-sm-2">
-          <b-img
-            id="image"
-            thumbnail
-            fluid
-            src="https://goasiadaytrip.com/blog/wp-content/uploads/2017/07/Ceres-Liner-bus.jpg"
-            alt="Image 1"
-          ></b-img>
-          <p class="text-center">Ceres Tours 5048 . Aircon</p>
+          <br />
+          <b-img id="image" thumbnail fluid :src="require('assets/ceresor.jpg')" alt="Image 1"></b-img>
+          <p>Ceres Tours 5048 . Ordinary</p>
         </div>
         <div class="col-sm-3">
           <h5 class="text-center">Ceres Liner</h5>
-          <hr /><br>
-            <p>Departure Time: 01:00 PM <br>Arrival Time: 08:30 PM <br>Date: November 10, 2019</p>
+          <hr />
+
+          <p>
+            Departure Time: 01:00 PM
+            <br />Arrival Time: 08:30 PM
+            <br />Date: November 10, 2019
+          </p>
         </div>
         <div class="col-sm-5">
           <h5 class="text-center">Bato via Barili</h5>
@@ -66,12 +66,12 @@
         </div>
         <div class="col-sm-2">
           <h5 class="text-center">55 Seats</h5>
-          <hr /><br><br>
+          <hr />
+
           <b-form id="b-getTicket">
-              <b-button variant="outline-success">Get Ticket</b-button>
-            </b-form>
+            <b-button variant="outline-success">Get Ticket</b-button>
+          </b-form>
         </div>
-      
       </b-row>
     </div>
     <hr />
@@ -79,20 +79,20 @@
     <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
       <b-row>
         <div class="col-sm-2">
-          <b-img
-            id="image"
-            thumbnail
-            fluid
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiAjPfETTvf_pAy4ULMQbWEx3HYSZ3_7487Qa1zGP7nZGxSn2y9A&s"
-            alt="Image 1"
-          ></b-img>
+          <br />
+          <b-img id="image" thumbnail fluid :src="require('assets/sunraysair.jpg')" alt="Image 1"></b-img>
 
-          <p class="text-center">Sunrays 4521 . AirCon</p>
+          <p>Sunrays 4521 . AirCon</p>
         </div>
         <div class="col-sm-3">
           <h5 class="text-center">Sunrays Bus Lines</h5>
-          <hr /><br>
-            <p>Departure Time: 05:00 PM <br>Arrival Time: 07:30 PM <br>Date: November 10, 2019</p>
+          <hr />
+
+          <p>
+            Departure Time: 05:00 PM
+            <br />Arrival Time: 07:30 PM
+            <br />Date: November 10, 2019
+          </p>
         </div>
         <div class="col-sm-5">
           <h5 class="text-center">Santander Liloan Port</h5>
@@ -100,10 +100,11 @@
         </div>
         <div class="col-sm-2">
           <h5 class="text-center">56 Seats</h5>
-          <hr /><br><br>
+          <hr />
+
           <b-form id="b-getTicket">
-              <b-button variant="outline-success">Get Ticket</b-button>
-            </b-form>
+            <b-button variant="outline-success">Get Ticket</b-button>
+          </b-form>
         </div>
       </b-row>
     </div>
@@ -112,20 +113,20 @@
     <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
       <b-row>
         <div class="col-sm-2">
-          <b-img
-            id="image"
-            thumbnail
-            fluid
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS1-pdn-qsvNGYTjyyS8-Y6rmlo38ioZVTsuTJcpp8xa0jYy3q&s"
-            alt="Image 1"
-          ></b-img>
+          <br />
+          <b-img id="image" thumbnail fluid :src="require('assets/ceresair.jpg')" alt="Image 1"></b-img>
 
-          <p class="text-center">Sunrays 8071 . Ordinary</p>
+          <p>Ceres Tours 8071 . AirCon</p>
         </div>
         <div class="col-sm-3">
-          <h5 class="text-center">Sunrays Bus Line</h5>
-          <hr /><br>
-            <p>Departure Time: 06:00 PM <br>Arrival Time: 03:30 PM <br>Date: November 10, 2019</p>
+          <h5 class="text-center">Ceres Liner</h5>
+          <hr />
+
+          <p>
+            Departure Time: 06:00 PM
+            <br />Arrival Time: 03:30 PM
+            <br />Date: November 10, 2019
+          </p>
         </div>
         <div class="col-sm-5">
           <h5 class="text-center">Samboan/Oslob</h5>
@@ -133,42 +134,11 @@
         </div>
         <div class="col-sm-2">
           <h5 class="text-center">56 Seats</h5>
-          <hr /><br><br>
-          <b-form id="b-getTicket">
-              <b-button variant="outline-success">Get Ticket</b-button>
-            </b-form>
-        </div>
-      </b-row>
-    </div>
-<hr>
-    <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
-      <b-row>
-        <div class="col-sm-2">
-          <b-img
-            id="image"
-            thumbnail
-            fluid
-            src="http://selfplannedtrip.com/wp-content/uploads/2014/11/selfplannedtrip-ceres-bus.jpg"
-            alt="Image 1"
-          ></b-img>
-
-          <p class="text-center">Ceres Tours 4271 . Ordinary</p>
-        </div>
-        <div class="col-sm-3">
-          <h5 class="text-center">Ceres Liner</h5>
-          <hr /><br>
-            <p>Departure Time: 01:00 PM <br>Arrival Time: 03:30 PM <br>Date: November 10, 2019</p>
-        </div>
-        <div class="col-sm-5">
-          <h5 class="text-center">Batao via Oslob</h5>
           <hr />
-        </div>
-        <div class="col-sm-2">
-          <h5 class="text-center">40 Seats</h5>
-          <hr /><br><br>
+
           <b-form id="b-getTicket">
-              <b-button variant="outline-success">Get Ticket</b-button>
-            </b-form>
+            <b-button variant="outline-success">Get Ticket</b-button>
+          </b-form>
         </div>
       </b-row>
     </div>
@@ -177,10 +147,13 @@
 
 
 <style scoped>
+#image {
+  height: 100px;
+  width: 150px;
+}
 #b-getTicket {
   margin-left: 5%;
 }
-
 #jumbo {
   margin-right: 0%;
   margin-left: 0%;
@@ -189,22 +162,22 @@
   padding-bottom: 1%;
   padding-right: 2%;
   padding-left: 2%;
-  border: solid green 2px;
+  border: solid green 1px;
 }
 #jumbo1 {
   margin-right: 0%;
   margin-left: 0%;
   margin-top: 0%;
   padding-top: 1%;
-  padding-bottom: 1%;
+  padding-bottom: 0%;
   padding-right: 2%;
   padding-left: 2%;
-  border: solid green 2px;
+  border: solid green 1px;
 }
 #b-button {
   margin-top: 0%;
 }
-#b-getTicket{
+#b-getTicket {
   margin-left: 30%;
 }
 </style>
@@ -226,3 +199,5 @@ export default {
   }
 };
 </script>
+
+
