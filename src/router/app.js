@@ -31,14 +31,14 @@ export default {
             tokenRequired: false
         }
     },
-    {
-        path: '/main',
-        name: 'main',
-        component: resolve => require(['modules/Register.vue'], resolve),
-        meta: {
-            tokenRequired: false
-        }
-    },
+    // {
+    //     path: '/main',
+    //     name: 'main',
+    //     component: resolve => require(['modules/Register.vue'], resolve),
+    //     meta: {
+    //         tokenRequired: false
+    //     }
+    // },
     {
         path: '/Dashboard',
         name: 'Dashboard',

@@ -1,13 +1,13 @@
 <template>
   <div id="background" style="padding-top:20px;">
-    <Navigation/>
+    <Navigation />
     <center>
       <div id="divLogin" class="col-sm-3 my-sm-5 border rounded" style="margin-left:0.5%">
         <form class="container">
           <center>
             <h1>Login</h1>
           </center>
-          <hr>
+          <hr />
           <div class="row">
             <label id="username" for="loginUsername">Username:</label>
             <input
@@ -16,10 +16,10 @@
               name="username"
               class="form-control"
               placeholder="Enter Username"
-            >
-            <br>
+            />
+            <br />
           </div>
-          <br>
+          <br />
           <div class="row">
             <label id="pass" for="loginPassword">Password:</label>
             <input
@@ -30,14 +30,14 @@
               class="form-control"
               id="loginPassword"
               placeholder="Enter Password"
-            >
+            />
           </div>
-          <br>
+          <br />
           <button id="btnLogin" class="btn btn-outline-primary" @click="submit">
             <h6>Login</h6>
           </button>
-          <br>
-          <br>
+          <br />
+          <br />
         </form>
       </div>
     </center>
@@ -57,7 +57,7 @@
 import Navigation from "@/components/frame/Navigation";
 import axios from "axios";
 import AUTH from "services/auth";
-import jquery from "jquery";
+// import jquery from "jquery";
 export default {
   components: {
     Navigation
@@ -70,47 +70,75 @@ export default {
     };
   },
   methods: {
-    submit: function(e) {
-      e.preventDefault();
-      AUTH.login(this.username, this.password);
+    // submit: function(e) {
+    //   e.preventDefault();
+    //   AUTH.login(this.username, this.password);
 
-      //let link= `http://localhost:8082/user/login`;
+    //   //let link= `http://localhost:8082/user/login`;
+    //   let data = {
+    //     username: this.username,
+    //     password: this.password
+    //   };
+    //   axios
+    //     .post("http://localhost:8082/user/login", {
+    //       data
+    //     })
+    //     .then(response => {
+    //       let AUTH = response.data.AUTH;
+    //       //localStorage.setItem('user',JSON.stringify(response.data.data))
+    //       localStorage.setItem("jwt", response.data.token);
+    //       if (localStorage.getItem("jwt") != null) {
+    //         if (AUTH == true) {
+    //           this.$router.push("/Dashboard");
+    //         }
+    //       } else {
+    //         this.$router.push("/");
+    //       }
+    //     })
+    //     .catch(err => {
+    //       console.log("errorrrr ");
+    //       console.log(err);
+    //     });
+    // }
+
+    handleSubmit(e) {
+      e.preventDefault();
+      this.submitted = true;
+      // stop here if form is invalid
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      }
       let data = {
-        username: this.username,
-        password: this.password
-      };
-      axios
-        .post("http://localhost:8082/user/login", {
-          data
-        })
-        .then(response => {
-          let AUTH = response.data.AUTH;
+        username: this.user.username,
+        password: this.user.password,
+       
+      }
+      axios.post('http://localhost:8082/user/login', {
+        data
+      })
+      .then(response => {
+        console.log(response)
+        let AUTH = response.data.AUTH;
           //localStorage.setItem('user',JSON.stringify(response.data.data))
           localStorage.setItem("jwt", response.data.token);
           if (localStorage.getItem("jwt") != null) {
             if (AUTH == true) {
               this.$router.push("/Dashboard");
             }
-          }else{
-             this.$router.push("/");
+          } else {
+            this.$router.push("/");
           }
-        })
-        .catch(err => {
-          console.log('errorrrr ')
-          console.log(err);
-        });
-      // jquery
-      //   .ajax({
-      //     url: link,
-      //     method: 'GET',
-      //     headers: {
-      //       'Access-Control-Allow-Origin': '*'
-      //     }
-      //   })
-      //   .then(response => {
-      //     alert(response.username);
-      //   })
+        
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+
+      AUTH.login(this.username, this.password);
+      
     }
+  
   }
 };
 </script>
