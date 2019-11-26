@@ -10,7 +10,7 @@
            <router-link to="/">Easakay</router-link>
           </template>
           <div class="d-block text-center">
-            <h3>Easakay is a web application that caters the need</h3>
+            <h3>Easakay is a web application that caters the need </h3>
           </div>
           <b-button class="bg-success" block @click="$bvModal.hide('bv-modal-example')" >Close Me</b-button>
         </b-modal>

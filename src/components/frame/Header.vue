@@ -22,14 +22,10 @@
     
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto" v-if="auth.user != null" >
-<<<<<<< HEAD
         <b-nav-item v-b-popover.hover.top="" title="Home" @click="goToHome">
             <i class="fas fa-home  fa-lg"></i>
-=======
-        <b-nav-item v-b-popover.hover.top="" title="Home">
-            <i @click="goToHome" class="fas fa-home  fa-lg"></i>
->>>>>>> c65cf6e1a43f4c3bb81fa6b2af4a0009ac393726
-        </b-nav-item>
+                </b-nav-item>
+            
     <b-nav-item>
          <i class="fas fa-map-marker-alt fa-lg"  v-b-popover.hover.top=""  @click="redirect('/GoogleMap')" title="Track Location"></i>
         </b-nav-item>
