@@ -1,6 +1,6 @@
 # Easakay
 
-##Instructions
+### Instructions
 
 Install dependencies
 ```cmd
