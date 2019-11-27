@@ -1,9 +1,8 @@
 <template>
   <div id="background" style="padding-top:20px;">
-    <Navigation />
     <center>
       <div id="divLogin" class="col-sm-3 my-sm-5 border rounded" style="margin-left:0.5%">
-        <form class="container">
+        <form class="container" @submit.prevent="login">
           <center>
             <h1>Login</h1>
           </center>
@@ -33,7 +32,7 @@
             />
           </div>
           <br />
-          <button id="btnLogin" class="btn btn-outline-primary" @click="submit">
+          <button id="btnLogin" class="btn btn-outline-primary">
             <h6>Login</h6>
           </button>
           <br />
@@ -54,55 +53,21 @@
 }
 </style>
 <script>
-import Navigation from "@/components/frame/Navigation";
-import axios from "axios";
-import AUTH from "services/auth";
-// import jquery from "jquery";
 export default {
-  components: {
-    Navigation
-  },
   data() {
-    AUTH;
     return {
-      username: "",
-      password: ""
+      username: "khert",
+      password: "123456789"
     };
   },
   methods: {
-    submit: function(e) {
-      e.preventDefault();
-      AUTH.login(this.username, this.password);
-
-      //let link= `http://localhost:8082/user/login`;
-      let data = {
-        username: this.username,
-        password: this.password
-      };
-      axios
-        .post("http://localhost:8082/user/login", {
-          data
-        })
-        .then(response => {
-          let AUTH = response.data.AUTH;
-          //localStorage.setItem('user',JSON.stringify(response.data.data))
-          localStorage.setItem("jwt", response.data.token);
-          if (localStorage.getItem("jwt") != null) {
-            if (AUTH == true) {
-              this.$router.push("/Dashboard");
-            }
-          } else {
-            this.$router.push("/");
-          }
-        })
-        .catch(err => {
-          console.log("errorrrr ");
-          console.log(err);
-        });
+    login: function() {
+      let username = this.username 
+      let password = this.password
+      this.$store.dispatch('loginAsync', { username, password })
+        .then(() => this.$router.push('/dashboard'))
+        .catch(err => console.log(err))
     }
-
-    }
-  
-  
+  }
 };
 </script>

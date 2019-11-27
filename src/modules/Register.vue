@@ -106,11 +106,9 @@
 </style>
 <script>
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
-import AUTH from "services/auth";
-import axios from 'axios'
 
 export default {
-  name: "app",
+  name: "Register",
   data() {
     return {
       user: {
@@ -131,8 +129,7 @@ export default {
     }
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit() {
       this.submitted = true;
       // stop here if form is invalid
       this.$v.$touch();
@@ -144,17 +141,10 @@ export default {
         password: this.user.password,
         email: this.user.email
       }
-      axios.post('http://localhost:8082/user/register', {
-        data
-      })
-      .then(response => {
-        console.log(response)
-      })
-      .catch(err =>{
-        console.log(err)
-      })
-
-      AUTH.register(this.user.username, this.user.password);
+     
+      this.$store.dispatch('registerAsync', { data })
+        .then(() => this.$router.push('/login'))
+        .catch(err => console.log(err))
     }
   }
 };
