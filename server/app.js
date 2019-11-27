@@ -45,6 +45,7 @@ app.post('/user/register', (req, res) => {
 
 app.post('/user/login', (req, res) => {
     console.log(req.body)
+    console.log(req.body.data.username)
     User.findOne({ username: req.body.data.username, password: req.body.data.password })
         .then((data) => {
             if (data) {
@@ -53,8 +54,8 @@ app.post('/user/login', (req, res) => {
                 }, config.secret, {
                         expiresIn: 86400
                     });
-                res.json({token:token,
-                    AUTH: true
+                res.json({user:data,token:token,
+                    AUTH: true,
                 })
             } else {
                 res.send('not found')

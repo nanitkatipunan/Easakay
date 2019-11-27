@@ -9,19 +9,19 @@
 
        <b-nav 
             @click="redirect('/Login')"
-            v-if="auth.user ===null"
+            v-if="!this.$store.getters.isLoggedIn"
             id="text"
             type="button"
             class="ml-auto"
           ><b-button variant="success">Sign In</b-button></b-nav>&nbsp;
           <b-nav
             @click="redirect('/Register')"
-            v-if="auth.user ===null"
+            v-if="!this.$store.getters.isLoggedIn"
             type="button"
           ><b-button variant="success"> Sign Up </b-button></b-nav>
     
       <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto" v-if="auth.user != null" >
+      <b-navbar-nav class="ml-auto" v-if="this.$store.getters.isLoggedIn" >
         <b-nav-item v-b-popover.hover.top=""  @click="goToHome" title="Home">
             <i class="fas fa-home  fa-lg"></i>
         </b-nav-item>
@@ -38,7 +38,7 @@
             <i class="fas fa-user fa-lg"></i>
           </template>
           <b-dropdown-item href="#"><router-link to="/PersonalInfo"> Profile </router-link></b-dropdown-item>
-          <b-dropdown-item><router-link to="/confirmLogout">Sign Out</router-link></b-dropdown-item>
+          <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -46,6 +46,31 @@
 
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      auth: true
+    };
+  },
+  methods: {
+    redirect(route) {
+      this.$router.push(route)
+    },
+    logout: function () {
+        this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.push('/login')
+        })
+    },
+    goToHome(){
+       this.$router.push('/dashboard')
+    }
+  }
+};
+</script>
+
 
 <style scoped >
 /* // @import "assets/style.scss"; */
@@ -97,25 +122,4 @@ color: aliceblue;
 
 }
 </style>
-<script>
-import AUTH from "services/auth";
-import ROUTER from "router";
-export default {
-  data() {
-    return {
-      auth: AUTH
-    };
-  },
-  methods: {
-    redirect(router) {
-      ROUTER.push(router);
-    },
-    // logout(){
-    //    ROUTER.push('/confirmLogout')
-    // },
-    goToHome(){
-      ROUTER.push('/Dashboard')
-    }
-  }
-};
-</script>
+
