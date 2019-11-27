@@ -1,16 +1,20 @@
 <template>
   <div>
+     <hr/>
+     <hr/>
+     <hr/>
+     <hr/>
+     <hr/>
+     <h1>TESTING</h1>
   </div>
 </template>
 
 <script>
 
-import Form from 'components/Form.vue'
-
 export default {
   name: 'HelloWorld',
-  props:{
-    msg: String
+  created() {
+    console.log("Hello world view")
   }
 }
 </script>

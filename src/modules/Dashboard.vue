@@ -43,110 +43,82 @@
     </div>
     <br />
 
-    <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
-      <b-row>
-        <div class="col-sm-2">
-          <br />
-          <b-img id="image" thumbnail fluid :src="require('assets/ceresor.jpg')" alt="Image 1"></b-img>
-          <p>Ceres Tours 5048 . Ordinary</p>
-        </div>
-        <div class="col-sm-3">
-          <h5 class="text-center">Ceres Liner</h5>
-          <hr />
+    <!-- BUS COMPONENT HERE!! -->
 
-          <p>
-            Departure Time: 01:00 PM
-            <br />Arrival Time: 08:30 PM
-            <br />Date: November 10, 2019
-          </p>
-        </div>
-        <div class="col-sm-5">
-          <h5 class="text-center">Bato via Barili</h5>
-          <hr />
-        </div>
-        <div class="col-sm-2">
-          <h5 class="text-center">55 Seats</h5>
-          <hr />
+    <BusList v-bind:buses="buses"/>
 
-          <b-form id="b-getTicket">
-            <b-button variant="outline-success">Get Ticket</b-button>
-          </b-form>
-        </div>
-      </b-row>
-    </div>
-    <hr />
-
-    <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
-      <b-row>
-        <div class="col-sm-2">
-          <br />
-          <b-img id="image" thumbnail fluid :src="require('assets/sunraysair.jpg')" alt="Image 1"></b-img>
-
-          <p>Sunrays 4521 . AirCon</p>
-        </div>
-        <div class="col-sm-3">
-          <h5 class="text-center">Sunrays Bus Lines</h5>
-          <hr />
-
-          <p>
-            Departure Time: 05:00 PM
-            <br />Arrival Time: 07:30 PM
-            <br />Date: November 10, 2019
-          </p>
-        </div>
-        <div class="col-sm-5">
-          <h5 class="text-center">Santander Liloan Port</h5>
-          <hr />
-        </div>
-        <div class="col-sm-2">
-          <h5 class="text-center">56 Seats</h5>
-          <hr />
-
-          <b-form id="b-getTicket">
-            <b-button variant="outline-success">Get Ticket</b-button>
-          </b-form>
-        </div>
-      </b-row>
-    </div>
-    <hr />
-
-    <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
-      <b-row>
-        <div class="col-sm-2">
-          <br />
-          <b-img id="image" thumbnail fluid :src="require('assets/ceresair.jpg')" alt="Image 1"></b-img>
-
-          <p>Ceres Tours 8071 . AirCon</p>
-        </div>
-        <div class="col-sm-3">
-          <h5 class="text-center">Ceres Liner</h5>
-          <hr />
-
-          <p>
-            Departure Time: 06:00 PM
-            <br />Arrival Time: 03:30 PM
-            <br />Date: November 10, 2019
-          </p>
-        </div>
-        <div class="col-sm-5">
-          <h5 class="text-center">Samboan/Oslob</h5>
-          <hr />
-        </div>
-        <div class="col-sm-2">
-          <h5 class="text-center">56 Seats</h5>
-          <hr />
-
-          <b-form id="b-getTicket">
-            <b-button variant="outline-success">Get Ticket</b-button>
-          </b-form>
-        </div>
-      </b-row>
-    </div>
   </b-card>
 </template>
 
+<script>
+import BusList from '../components/BusList.vue';
 
-<style scoped>
+export default {
+  components:{
+    BusList
+  },
+  data() {
+    return {
+      from: "",
+      to: "",
+      depart: "",
+      buses: [
+        {
+          busId: 1,
+          name: "Sunrays",
+          image: "http://via.placeholder.com/150x100",
+          plateNumber: "4521",
+          busType: "Aircon",
+          company: "Sunrays Bus Lines",
+          departureTime:"05:00 PM",
+          arrivalTime:"07:30 PM",
+          departureDate: "November 10, 2019",
+          busRoute: {
+            from: "Santander",
+            to: "Liloan Port"
+          },
+          availableSeats:56
+        },
+        {
+          busId: 1,
+          name: "Sunrays",
+          image: "http://via.placeholder.com/150x100",
+          plateNumber: "55778",
+          busType: "Regular",
+          company: "Ceres Bus Lines",
+          departureTime:"05:00 PM",
+          arrivalTime:"07:30 PM",
+          departureDate: "November 10, 2019",
+          busRoute: {
+            from: "Santander",
+            to: "Liloan Port"
+          },
+          availableSeats:36
+        },
+        {
+          busId: 1,
+          name: "Sunrays",
+          image: "http://via.placeholder.com/150x100",
+          plateNumber: "99667",
+          busType: "Regular",
+          company: "Sunrays Bus Lines",
+          departureTime:"05:00 PM",
+          arrivalTime:"07:30 PM",
+          departureDate: "November 10, 2019",
+          busRoute: {
+            from: "Santander",
+            to: "Liloan Port"
+          },
+          availableSeats:41
+        }
+      ]
+    };
+  }
+};
+</script>
+
+
+<style>
 #image {
   height: 100px;
   width: 150px;
@@ -181,23 +153,3 @@
   margin-left: 30%;
 }
 </style>
-
-
-<script>
-export default {
-  computed: {
-    nameState() {
-      return this.name.length > 2 ? true : false;
-    }
-  },
-  data() {
-    return {
-      from: "",
-      to: "",
-      depart: ""
-    };
-  }
-};
-</script>
-
-

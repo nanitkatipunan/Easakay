@@ -9,14 +9,14 @@
 
        <b-nav 
             @click="redirect('/Login')"
-            v-if="auth.user ===null"
+            v-if="!this.$store.getters.isLoggedIn"
             id="text"
             type="button"
             class="ml-auto"
           ><b-button variant="success">Sign In</b-button></b-nav>
           <b-nav
             @click="redirect('/Register')"
-            v-if="auth.user ===null"
+            v-if="!this.$store.getters.isLoggedIn"
             type="button"
           ><b-button variant="success"> Sign Up </b-button></b-nav>
     </b-collapse>

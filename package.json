@@ -28,7 +28,8 @@
     "vue-sidebar-menu": "^4.2.2",
     "vuelidate": "^0.7.4",
     "vuelidate-error-extractor": "^2.4.0",
-    "vuelidate-forms": "^0.3.0-beta.2"
+    "vuelidate-forms": "^0.3.0-beta.2",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
@@ -51,7 +52,8 @@
       "eslint:recommended"
     ],
     "rules": {
-      "no-console": "off"
+      "no-console": "off",
+      "no-mixed-spaces-and-tabs": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"
