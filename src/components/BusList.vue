@@ -17,4 +17,5 @@ export default {
     },
     props:["buses"]
 }
+
 </script>

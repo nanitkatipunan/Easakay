@@ -19,6 +19,7 @@ Vue.use(Vuelidate)
 // Vue.use(axios)
 
 Vue.config.productionTip = false
+
 Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVue)
 
@@ -35,6 +36,7 @@ Vue.use(BootstrapVue)
 //   template: '<App/>'
 // })
 
+export const EventBus = new Vue()
 
 new Vue({
   router,

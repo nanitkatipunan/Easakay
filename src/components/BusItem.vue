@@ -26,7 +26,7 @@
             <hr />
 
             <b-form id="b-getTicket">
-                <b-button variant="outline-success">Get Ticket</b-button>
+                <b-button variant="outline-success" @click="getTicket">Get Ticket</b-button>
             </b-form>
             </div>
         </b-row>
@@ -34,8 +34,15 @@
 </template>
 
 <script>
+import { EventBus } from '../main';
 export default {
     name:"BusItem",
-    props:["bus"]
+    props:["bus"],
+    methods:{
+         getTicket:function(){
+             let bus = this.bus
+             EventBus.$emit('displayBusDataOnModal',bus);
+         }
+     }
 }
 </script>
