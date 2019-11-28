@@ -10,7 +10,6 @@
             <div class="col-sm-3">
             <h5 class="text-center">{{ bus.company }}</h5>
             <hr />
-
             <p>
                 Departure Time: {{ bus.departureTime }}
                 <br />Arrival Time: {{ bus.arrivalTime }}
@@ -24,9 +23,8 @@
             <div class="col-sm-2">
             <h5 class="text-center">{{ bus.availableSeats }} Seats</h5>
             <hr />
-
             <b-form id="b-getTicket">
-                <b-button variant="outline-success" @click="getTicket">Get Ticket</b-button>
+                <b-button v-b-modal.modal-xl variant="outline-success" @click="getTicket">Get ticket</b-button>
             </b-form>
             </div>
         </b-row>
