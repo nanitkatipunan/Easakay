@@ -19,7 +19,7 @@
               id="input-live"
               v-model="to"
               aria-describedby="input-live-help input-live-feedback"
-            ></b-form-input>
+              ></b-form-input>
           </div>
         </b-col>
         <b-col>
@@ -130,6 +130,9 @@ export default {
              this.busInModal = data;
              this.showModal = true;
          })
+  },
+  search() {
+    
   }
 };
 </script>
