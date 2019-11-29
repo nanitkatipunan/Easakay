@@ -18,7 +18,6 @@
 
 <script>
 import Header from 'components/frame/Header.vue';
-import RouterDetails from 'modules/RouterDetails.vue'
 
 export default {
   name: 'app',

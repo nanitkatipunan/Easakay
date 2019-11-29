@@ -1,7 +1,7 @@
 <template>
   <div fixed="top">
      <b-navbar toggleable="lg" type="dark" variant="success">
-    <router-link to="/"><b-navbar-brand id="Logotext">Easakay</b-navbar-brand></router-link>
+       <img id="logo" :src="require('assets/easakay.png')" @click="redirect('/')">
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -78,6 +78,9 @@ export default {
   color: white;
   margin-top: -2%;
   margin-left: 96%;
+}
+#logo {
+  width:13%;
 }
 #not{
   color: white;

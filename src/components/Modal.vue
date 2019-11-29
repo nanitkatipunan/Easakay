@@ -1,7 +1,6 @@
 <template>
   <transition name="modal">
-    <b-modal id="modal-xl" size="xl" title="Easakay" style="text-align: center">
-      <br>
+    <b-modal id="modal-xl" size="xl" title="Easakay" >
       <b-img id="image" thumbnail fluid :src="bus.image" alt="Image 1"></b-img>
       <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
         <b-row>
@@ -91,7 +90,7 @@ export default {
     },
     decrement() {
       if (this.num === 1) {
-        alert("Negative quantity not allowed");
+        alert("Negative number is not allowed");
       } else {
         this.num--;
       }
