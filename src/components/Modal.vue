@@ -1,55 +1,74 @@
 <template>
   <transition name="modal">
     <b-modal id="modal-xl" size="xl" title="Easakay" style="text-align: center">
-      <br />
+      <br>
       <b-img id="image" thumbnail fluid :src="bus.image" alt="Image 1"></b-img>
       <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
         <b-row>
           <div class="col-sm-2">
             <h2 style="font-size:150%;text-align:center">{{ bus.name }}</h2>
-            <hr />
+            <hr>
             <h5 style="text-align:center">{{ bus.departureTime}}</h5>
             <b-img id="image1" thumbnail fluid :src="bus.image1" alt="Image 1"></b-img>
             <h5 style="text-align:center">{{bus.arrivalTime}}</h5>
           </div>
           <div class="col-sm-7">
-            <br />
-            <br />
-            <br />
-            <br />
+            <br>
+            <br>
+            <br>
+            <br>
             <p>
               From: {{bus.busRoute.from}}
-              <br />
-              <br />
+              <br>
+              <br>
               Address: {{bus.busRoute.address}}
-              <br />
-              <br />
+              <br>
+              <br>
               To: {{bus.busRoute.to}}
             </p>
           </div>
           <div class="col-sm-2">
             <h5 class="text-center">{{ bus.availableSeats }} Seats</h5>
-            <hr />
+            <hr>
           </div>
         </b-row>
       </div>
 
-        <br>
+      <br>
       <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
         <b-row>
-        <div class="col-sm-2">
-          <b-dropdown id="dropdown-1" variant="outline-success" text="Passenger" class="m-md-2">
-            <b-dropdown-item>Adult</b-dropdown-item>
-            <b-dropdown-item>Senior Citizen</b-dropdown-item>
-            <b-dropdown-item>Student</b-dropdown-item>
-          </b-dropdown>
-        </div>
-        <div class="col-sm-8">
-          <p> {{ bus.fare }} </p>
-        </div>
-        <div class="col-sm-2">
-          <b-link @click="redirect('/RouterDetails')"> {{ bus.rlink }} </b-link>
-        </div>
+          <b-col sm="2">
+            <b-form-select
+              variant="outline-success"
+              aria-labelledby="dropdownMenuButton"
+              v-model="selectedItem"
+            >
+              <option value="Adult">Adult</option>
+              <option value="Senior Citizen">Senior Citizen</option>
+              <option value="Student">Student</option>
+              <div>
+                <strong>{{ selectedItem }}</strong>
+              </div>
+            </b-form-select>
+          </b-col>
+          <div class="col-sm-3">
+            <p>Number of Passengers</p>
+            <b-input-group>
+              <b-input-group-prepend> 
+                <b-btn variant="outline-success" @click="decrement()">-</b-btn>
+              </b-input-group-prepend>
+              <b-form-input type="number" min="0.00" :value="num"></b-form-input>
+              <b-input-group-append>
+                <b-btn variant="outline-success" @click="increment()">+</b-btn>
+              </b-input-group-append>
+            </b-input-group>
+          </div>
+          <div class="col-sm-5">
+            <p>{{ bus.fare }}</p>
+          </div>
+          <div class="col-sm-2">
+            <router-link to="/RouterDetails">{{ bus.rlink }}</router-link>
+          </div>
         </b-row>
       </div>
     </b-modal>
@@ -59,9 +78,24 @@
 <script>
 export default {
   name: "Modal",
+  data() {
+    return {
+      num: 1
+    };
+  },
+  selectedItem: "",
   props: ["show", "bus"],
   methods: {
-
+    increment() {
+      this.num++;
+    },
+    decrement() {
+      if (this.num === 1) {
+        alert("Negative quantity not allowed");
+      } else {
+        this.num--;
+      }
+    }
   }
 };
 </script>

@@ -79,14 +79,14 @@ export default {
           plateNumber: "45211",
           busType: "Aircon",
           company: "Sunrays Bus Lines",
-          departureTime: "05:00 PM",
-          arrivalTime: "07:30 PM",
+          departureTime: "04:00 AM",
+          arrivalTime: "08:30 PM",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Santander Liloan Port",
+            to: "Samboan/Oslob",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
           dropdown: {
@@ -104,8 +104,8 @@ export default {
           plateNumber: "55778",
           busType: "Ordinary",
           company: "Ceres Liner",
-          departureTime: "05:00 PM",
-          arrivalTime: "07:30 PM",
+          departureTime: "01:00 AM",
+          arrivalTime: "08:30 PM",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
@@ -114,18 +114,18 @@ export default {
             to: "Santander Liloan Port",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats: 55
+          availableSeats: 50
         },
         {
           busId: 3,
           name: "Ceres",
           image: require("assets/ceresair.jpg"),
           image1: require('assets/iconbus.png'),
-          plateNumber: "99667",
+          plateNumber: "871",
           busType: "Aircon",
           company: "Ceres Liner",
-          departureTime: "05:00 AM",
-          arrivalTime: "12:00 PM",
+          departureTime: "04:00 AM",
+          arrivalTime: "06:00 AM",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
@@ -134,7 +134,7 @@ export default {
             to: "Argao",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats: 41
+          availableSeats: 45
         },
         {
           busId: 4,
@@ -142,19 +142,19 @@ export default {
           image: require("assets/ceres.jpg"),
           image1: require('assets/iconbus.png'),
           plateNumber: "71289",
-          busType: "Aircon",
+          busType: "Ordinary",
           company: "Ceres Liner",
-          departureTime: "03:00 PM",
-          arrivalTime: "10:30 PM",
+          departureTime: "01:00 AM",
+          arrivalTime: "10:00 PM",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Moalboal via Carcar",
+            to: "Bato via Barili via Moalboal via Carcar",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats: 45
+          availableSeats: 55
         },
         {
           busId: 5,
@@ -164,17 +164,17 @@ export default {
           plateNumber: "78542",
           busType: "Aircon",
           company: "Ceres Liner",
-          departureTime:"04:00 PM",
-          arrivalTime:"11:30 PM",
+          departureTime:"07:00 PM",
+          arrivalTime:"12:00 Mid",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Bato via Barili",
+            to: "Argao",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats:45
+          availableSeats:40
         },
         {
           busId: 6,
@@ -184,8 +184,8 @@ export default {
           plateNumber: "58976",
           busType: "Aircon",
           company: "Sunrays Bus Lines",
-          departureTime: "09:00 AM",
-          arrivalTime: "04:30 PM",
+          departureTime: "04:00 AM",
+          arrivalTime: "08:30 PM",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
@@ -194,7 +194,7 @@ export default {
             to: "Santander Liloan Port",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats: 39
+          availableSeats: 56
         },
         {
           busId: 7,
@@ -214,7 +214,7 @@ export default {
             to: "Bato via Oslob",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats:41
+          availableSeats:45
         },
         {
           busId: 8,
