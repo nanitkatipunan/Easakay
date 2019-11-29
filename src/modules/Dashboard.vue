@@ -18,6 +18,7 @@
               placeholder="To"
               id="input-live"
               v-model="to"
+              @input.native="filter"
               aria-describedby="input-live-help input-live-feedback"
             ></b-form-input>
           </div>
@@ -41,12 +42,16 @@
         </b-col>
       </b-row>
     </div>
-    <br />
+    <br>
 
     <!-- BUS COMPONENT HERE!! -->
-
-    <BusList v-bind:buses="buses" />
-    <Modal v-bind:bus="busInModal" v-bind:show="showModal" @close="showModal = false" />
+    <div v-if="filtering">
+      <BusList v-bind:buses="filterArray"/>
+    </div>
+    <div v-else>
+      <BusList v-bind:buses="buses"/>
+    </div>
+    <Modal v-bind:bus="busInModal" v-bind:show="showModal" @close="showModal = false"/>
   </b-card>
 </template>
 
@@ -70,12 +75,14 @@ export default {
       depart: "",
       showModal: false,
       busInModal: { busRoute: {} },
+      filterArray: [],
+      filtering: false,
       buses: [
         {
           busId: 1,
           name: "Sunrays",
           image: require("assets/sunraysair.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "45211",
           busType: "Aircon",
           company: "Sunrays Bus Lines",
@@ -86,7 +93,7 @@ export default {
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Samboan/Oslob",
+            to: "Samboan",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
           dropdown: {
@@ -100,7 +107,7 @@ export default {
           busId: 2,
           name: "Ceres",
           image: require("assets/ceresor.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "55778",
           busType: "Ordinary",
           company: "Ceres Liner",
@@ -120,7 +127,7 @@ export default {
           busId: 3,
           name: "Ceres",
           image: require("assets/ceresair.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "871",
           busType: "Aircon",
           company: "Ceres Liner",
@@ -140,7 +147,7 @@ export default {
           busId: 4,
           name: "Ceres",
           image: require("assets/ceres.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "71289",
           busType: "Ordinary",
           company: "Ceres Liner",
@@ -151,7 +158,7 @@ export default {
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Bato via Barili via Moalboal via Carcar",
+            to: "Bato",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
           availableSeats: 55
@@ -159,13 +166,13 @@ export default {
         {
           busId: 5,
           name: "Ceres",
-          image: require('assets/ceresairc.jpg'),
-          image1: require('assets/iconbus.png'),
+          image: require("assets/ceresairc.jpg"),
+          image1: require("assets/iconbus.png"),
           plateNumber: "78542",
           busType: "Aircon",
           company: "Ceres Liner",
-          departureTime:"07:00 PM",
-          arrivalTime:"12:00 Mid",
+          departureTime: "07:00 PM",
+          arrivalTime: "12:00 Mid",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
@@ -174,13 +181,13 @@ export default {
             to: "Argao",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats:40
+          availableSeats: 40
         },
         {
           busId: 6,
           name: "Sunrays",
           image: require("assets/sunraysairc.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "58976",
           busType: "Aircon",
           company: "Sunrays Bus Lines",
@@ -199,28 +206,28 @@ export default {
         {
           busId: 7,
           name: "Ceres",
-          image: require('assets/ceresord.jpg'),
-          image1: require('assets/iconbus.png'),
+          image: require("assets/ceresord.jpg"),
+          image1: require("assets/iconbus.png"),
           plateNumber: "52345",
           busType: "Ordinary",
           company: "Ceres Liner",
-          departureTime:"01:00 PM",
-          arrivalTime:"12:00 Mid",
+          departureTime: "01:00 PM",
+          arrivalTime: "12:00 Mid",
           departureDate: currentDate,
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Bato via Oslob",
+            to: "Bato",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
-          availableSeats:45
+          availableSeats: 45
         },
         {
           busId: 8,
           name: "Sunrays",
           image: require("assets/sunrays.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "80123",
           busType: "Aircon",
           company: "Sunrays Bus Lines",
@@ -240,7 +247,7 @@ export default {
           busId: 9,
           name: "Sunrays",
           image: require("assets/sunraysexp.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "78542",
           busType: "Ordinary",
           company: "Sunrays Bus Lines",
@@ -251,7 +258,7 @@ export default {
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Liloan Port",
+            to: "Santander Liloan Port",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
           availableSeats: 39
@@ -260,7 +267,7 @@ export default {
           busId: 10,
           name: "Sunrays",
           image: require("assets/sunraysord.jpg"),
-          image1: require('assets/iconbus.png'),
+          image1: require("assets/iconbus.png"),
           plateNumber: "18956",
           busType: "Ordinary",
           company: "Sunrays Bus Lines",
@@ -271,18 +278,31 @@ export default {
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
             from: "Southbus Terminal",
-            to: "Samboan via Oslob",
+            to: "Samboan",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-
           },
-          
-            
+
           availableSeats: 45
-        },
+        }
       ]
     };
   },
   methods: {
+    filter() {
+      if (this.to != "") {
+        this.filtering = true;
+      }
+      let way = this.to.toLowerCase();
+      let size = way.length;
+      var tempArray = [];
+      this.buses.forEach(element => {
+        let busRT = element.busRoute.to.toLowerCase();
+        if (way == busRT.slice(0, size)){
+          tempArray.push(element);
+        }
+      });
+      this.filterArray = tempArray;
+    },
     getTicket() {
       console.log("getTicket");
     }

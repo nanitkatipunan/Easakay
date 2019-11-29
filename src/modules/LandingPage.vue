@@ -6,8 +6,8 @@
           <div class="col-lg-12">
             <p id="p" class="text-center">
               "Value everyone's comfort
-              <br />in the world
-              <br />of travel"
+              <br>in the world
+              <br>of travel"
             </p>
           </div>
         </b-col>
@@ -24,17 +24,15 @@
               <b-carousel-slide
                 img-src="https://www.panaynews.net/wp-content/uploads/2019/07/cropped-Yanson-Group-of-Bus-Companies-Ceres-Bus-3-696x391.jpg"
               ></b-carousel-slide>
-              <b-carousel-slide
-                img-src="https://farm1.static.flickr.com/958/40036003070_8e2868fc80.jpg"
-              ></b-carousel-slide>
+              <b-carousel-slide img-src></b-carousel-slide>
               <b-carousel-slide img-src="https://www.travelingcebu.com/images/csbt2.jpg"></b-carousel-slide>
             </b-carousel>
           </div>
         </b-col>
       </b-row>
     </div>
-    <br />
-    <br />
+    <br>
+    <br>
     <center>
       <button id="show-btn" @click="$bvModal.show('bv-modal-example')">Learn more</button>
     </center>
@@ -43,8 +41,60 @@
         <router-link to="/">Easakay</router-link>
       </template>
       <div class="d-block text-center">
-        <h3>Easakay is a web application that caters the need</h3>
+        <h3>Easakay is a web application that aims to help passengers to have a hassle-free travel.</h3>
       </div>
+      <br>
+      <br>
+      <center>
+        <p>ABOUT US</p>
+      </center>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="container">
+            <b-img id="imgMember" :src="require('assets/nanit.jpg')" fluid alt="Fluid image"></b-img>
+            <div class="col-sm-6">
+            <div class="card">
+              <p id="pMember">Nanit Katipunan</p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container">
+            <b-img id="imgMember" :src="require('assets/tanya.png')" fluid alt="Fluid image"></b-img>
+            <div class="card">
+              <p id="pMember">Cristina Bustamante</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container">
+            <b-img id="imgMember" :src="require('assets/mars.jpg')" fluid alt="Fluid image"></b-img>
+            <div class="card">
+              <p id="pMember">Ma.Lyn Gamboa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="container">
+            <b-img id="imgMember" :src="require('assets/yubert.png')" fluid alt="Fluid image"></b-img>
+            <div class="card">
+              <p id="pMember">Yubert Mariscal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
       <b-button class="bg-success" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>
     </b-modal>
   </b-card>
@@ -65,6 +115,7 @@
   margin-top: 10%;
   font-style: verdana;
   font-weight: bold;
+  color: white;
 }
 #show-btn {
   background-color: green;
@@ -78,4 +129,11 @@
 div {
   position: cover;
 }
+/* #imgMember {
+  width: 50%;
+  margin-left: 50%;
+}
+#pMember {
+  margin-top: 0%;
+} */
 </style>
