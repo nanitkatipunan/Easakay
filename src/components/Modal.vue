@@ -45,9 +45,6 @@
               <option value="Adult">Adult</option>
               <option value="Senior Citizen">Senior Citizen</option>
               <option value="Student">Student</option>
-              <div>
-                <strong>{{ selectedItem }}</strong>
-              </div>
             </b-form-select>
           </b-col>
           <div class="col-sm-3">
@@ -79,10 +76,10 @@ export default {
   name: "Modal",
   data() {
     return {
+      selectedItem: "",
       num: 1
     };
   },
-  selectedItem: "",
   props: ["show", "bus"],
   methods: {
     increment() {

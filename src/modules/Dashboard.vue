@@ -5,7 +5,6 @@
         <b-col>
           <div class="col-lg-12">
             <b-form-input
-              placeholder="From"
               id="input-live"
               v-model="from"
               aria-describedby="input-live-help input-live-feedback"
@@ -23,12 +22,14 @@
             ></b-form-input>
           </div>
         </b-col>
-        <b-col>
+        <!-- <b-col>
           <div class="col-lg-12">
             <b-form-input
               placeholder="Depart Time"
               id="input-live"
               v-model="depart"
+              type="String"
+              @input.native="filter"
               aria-describedby="input-live-help input-live-feedback"
             ></b-form-input>
           </div>
@@ -40,6 +41,7 @@
             </b-form>
           </div>
         </b-col>
+      </b-row> -->
       </b-row>
     </div>
     <br>
@@ -70,7 +72,7 @@ export default {
       .slice(0, 10)
       .replace(/-/g, "-");
     return {
-      from: "",
+      from: "Southbus Terminal",
       to: "",
       depart: "",
       showModal: false,
@@ -117,7 +119,7 @@ export default {
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
-            from: "Soutbus Terminal",
+            from: "Southbus Terminal",
             to: "Santander Liloan Port",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
@@ -197,7 +199,7 @@ export default {
           rlink: "Router Details",
           fare: "Estimated Fare Php 120.00 - Php 180.00",
           busRoute: {
-            from: "Soutbus Terminal",
+            from: "Southbus Terminal",
             to: "Santander Liloan Port",
             address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
           },
@@ -303,9 +305,9 @@ export default {
       });
       this.filterArray = tempArray;
     },
-    getTicket() {
-      console.log("getTicket");
-    }
+    // getTicket() {
+    //   console.log("getTicket");
+    // }
   },
   mounted() {
     EventBus.$on("displayBusDataOnModal", data => {
