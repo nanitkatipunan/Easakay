@@ -1,5 +1,5 @@
 <template>
-  <b-card>
+  <b-card id="LargeContainer">
     <div class="bv-example-row" id="container1" bg-variant="white" text-variant="black">
       <b-row>
         <b-col>
@@ -34,72 +34,76 @@
     <br>
     <br>
     <center>
-      <button id="show-btn" @click="$bvModal.show('bv-modal-example')">Learn more</button>
+      <b-button v-b-modal.modal-xl variant="outline-success">Learn More</b-button>
     </center>
-    <b-modal id="bv-modal-example" hide-footer>
-      <template v-slot:modal-title>
-        <router-link to="/">Easakay</router-link>
-      </template>
+    <b-modal id="modal-xl" size="xl" title="Easakay">
       <div class="d-block text-center">
-        <h3>Easakay is a web application that aims to help passengers to have a hassle-free travel.</h3>
+        <div class="container">
+          <div class ="card">
+            <h2>Easakay is a web application that  allows passengers 
+          to know the information of the bus such as bus location, bus route and 
+         bus schedule. With Easakay, passengers can reserve seats with a given time frame.</h2>
+            <div class="card">
+            <p id="misvis">MISSION</p>
+            <h2> To give passengers an easy access about the bus schedules for a convenient and hassle free travel in an innovative way. </h2>
+            </div>
+            <div class="card">
+            <p id="misvis"> VISION </p>
+            <h2> We envision to provide a hassle free travel to all passengers all over the world. </h2>
+            </div>
+      </div>
+      </div>
       </div>
       <br>
       <br>
-      <center>
-        <p>ABOUT US</p>
-      </center>
+      <center><p id="us">Who we are</p></center>
       <br>
       <div class="row">
-        <div class="col-sm-6">
-          <div class="container">
-            <b-img id="imgMember" :src="require('assets/nanit.jpg')" fluid alt="Fluid image"></b-img>
-            <div class="col-sm-6">
+        <div class="col-sm-3">
             <div class="card">
+            <b-img id="imgMember" :src="require('assets/nanit.jpg')" fluid alt="Fluid image"></b-img>
               <p id="pMember">Nanit Katipunan</p>
             </div>
-            </div>
           </div>
-        </div>
-      </div>
       <br>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="container">
-            <b-img id="imgMember" :src="require('assets/tanya.png')" fluid alt="Fluid image"></b-img>
+        <div class="col-sm-3">
             <div class="card">
+            <b-img id="imgMember" :src="require('assets/tanya.png')" fluid alt="Fluid image"></b-img>
               <p id="pMember">Cristina Bustamante</p>
             </div>
-          </div>
         </div>
-      </div>
       <br>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="container">
-            <b-img id="imgMember" :src="require('assets/mars.jpg')" fluid alt="Fluid image"></b-img>
+        <div class="col-sm-3">
             <div class="card">
+            <b-img id="imgMember" :src="require('assets/mars.jpg')" fluid alt="Fluid image"></b-img>
               <p id="pMember">Ma.Lyn Gamboa</p>
             </div>
-          </div>
         </div>
-      </div>
       <br>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="container">
-            <b-img id="imgMember" :src="require('assets/yubert.png')" fluid alt="Fluid image"></b-img>
+        <div class="col-sm-3">
             <div class="card">
+              <b-img id="imgMember" :src="require('assets/yubert.png')" fluid alt="Fluid image"></b-img>
               <p id="pMember">Yubert Mariscal</p>
             </div>
           </div>
         </div>
-      </div>
-      <br>
-      <b-button class="bg-success" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>
     </b-modal>
+    
   </b-card>
+  
 </template>
+
+<script>
+  export default {
+  }
+</script>
+
 <style>
+
+.container {
+  border: 50% black;
+
+}
 #container1 {
   background-size: cover;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAA1BMVEUksk7fqXNLAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AcUIAAFkqh/QAAAAAElFTkSuQmCC");
@@ -117,23 +121,24 @@
   font-weight: bold;
   color: white;
 }
-#show-btn {
-  background-color: green;
-  color: white;
-  padding-left: 2%;
-  padding-right: 2%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  border-radius: 10%;
+#misvis {
+  font-size: 300%;
+  font-weight: bold;
+  font-family:arial;
+  color:green;
+}
+#us {
+  font-size: 350%;
 }
 div {
   position: cover;
 }
-/* #imgMember {
+ #imgMember {
   width: 50%;
-  margin-left: 50%;
+  height: 30%;
+  margin-left: 0%;
 }
 #pMember {
   margin-top: 0%;
-} */
+} 
 </style>

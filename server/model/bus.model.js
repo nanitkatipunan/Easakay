@@ -7,6 +7,30 @@ var BusSchema = new Schema({
         required: true,
         unique: true,
     },
+    name:{
+        type: String,
+        required: true
+    },
+    image:{
+        type: String,
+        required: true
+    },
+    image1:{
+        type: String,
+        required: true
+    },
+    plateNumber:{
+        type: String,
+        required: true
+    },
+    busType:{
+        type: String,
+        required: true
+    },
+    company:{
+        type: String,
+        required: true
+    },
     departureTime:{
         type: String,
         required: true
@@ -15,27 +39,33 @@ var BusSchema = new Schema({
         type: String,
         required: true
     },
-    destination:{
+    departureDate:{
         type: String,
         required: true
     },
-    busType:{
-        type: String,
-        required: true
-    },
-    availableSeat:{
-        type: Number,
-        required: true
-    },
-    busNo:{
-        type: Number,
-        required: true
-    },
-    passenger_id:{
+    rlink:{
         type: String,
         required: true
     },
     fare:{
+        type: String,
+        required: true
+    },
+    busRoute:{
+        from:{
+            type: String,
+            required: true
+        },
+        to:{
+            type: String,
+            required: true
+        },
+        address:{
+            type: String,
+            required: true
+        },
+    },
+    availableSeats:{
         type: Number,
         required: true
     }

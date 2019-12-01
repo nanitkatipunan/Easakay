@@ -22,26 +22,17 @@
             ></b-form-input>
           </div>
         </b-col>
-        <!-- <b-col>
+        <b-col>
           <div class="col-lg-12">
             <b-form-input
               placeholder="Depart Time"
               id="input-live"
               v-model="depart"
-              type="String"
-              @input.native="filter"
+              @input.native="filterbytime"
               aria-describedby="input-live-help input-live-feedback"
             ></b-form-input>
           </div>
         </b-col>
-        <b-col>
-          <div class="col-lg-12">
-            <b-form id="b-button">
-              <b-button variant="outline-success">SEARCH</b-button>
-            </b-form>
-          </div>
-        </b-col>
-      </b-row> -->
       </b-row>
     </div>
     <br>
@@ -49,6 +40,13 @@
     <!-- BUS COMPONENT HERE!! -->
     <div v-if="filtering">
       <BusList v-bind:buses="filterArray"/>
+      <div v-if="filterArray.length == 0"><center><br><br>
+      <h1>No available bus</h1></center></div>
+    </div>
+    <div v-else-if="filteringbytime">
+      <BusList v-bind:buses="filterArrayBytime"/>
+      <div v-if="filterArrayBytime.length == 0"><center><br><br>
+      <h1>No available bus</h1></center></div>
     </div>
     <div v-else>
       <BusList v-bind:buses="buses"/>
@@ -61,16 +59,15 @@
 import BusList from "../components/BusList.vue";
 import Modal from "../components/Modal.vue";
 import { EventBus } from "../main";
+import axios from 'axios';
+
 export default {
   components: {
     BusList,
     Modal
   },
   data() {
-    var currentDate = new Date()
-      .toJSON()
-      .slice(0, 10)
-      .replace(/-/g, "-");
+    var currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
     return {
       from: "Southbus Terminal",
       to: "",
@@ -78,222 +75,247 @@ export default {
       showModal: false,
       busInModal: { busRoute: {} },
       filterArray: [],
+      filterArrayBytime: [],
       filtering: false,
+      filteringbytime: false,
       buses: [
-        {
-          busId: 1,
-          name: "Sunrays",
-          image: require("assets/sunraysair.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "45211",
-          busType: "Aircon",
-          company: "Sunrays Bus Lines",
-          departureTime: "04:00 AM",
-          arrivalTime: "08:30 PM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Samboan",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          dropdown: {
-            adult: "Adult",
-            senior: "Senior Citizen",
-            student: "Student"
-          },
-          availableSeats: 56
-        },
-        {
-          busId: 2,
-          name: "Ceres",
-          image: require("assets/ceresor.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "55778",
-          busType: "Ordinary",
-          company: "Ceres Liner",
-          departureTime: "01:00 AM",
-          arrivalTime: "08:30 PM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Santander Liloan Port",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 50
-        },
-        {
-          busId: 3,
-          name: "Ceres",
-          image: require("assets/ceresair.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "871",
-          busType: "Aircon",
-          company: "Ceres Liner",
-          departureTime: "04:00 AM",
-          arrivalTime: "06:00 AM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Argao",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 45
-        },
-        {
-          busId: 4,
-          name: "Ceres",
-          image: require("assets/ceres.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "71289",
-          busType: "Ordinary",
-          company: "Ceres Liner",
-          departureTime: "01:00 AM",
-          arrivalTime: "10:00 PM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Bato",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 55
-        },
-        {
-          busId: 5,
-          name: "Ceres",
-          image: require("assets/ceresairc.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "78542",
-          busType: "Aircon",
-          company: "Ceres Liner",
-          departureTime: "07:00 PM",
-          arrivalTime: "12:00 Mid",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Argao",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 40
-        },
-        {
-          busId: 6,
-          name: "Sunrays",
-          image: require("assets/sunraysairc.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "58976",
-          busType: "Aircon",
-          company: "Sunrays Bus Lines",
-          departureTime: "04:00 AM",
-          arrivalTime: "08:30 PM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Santander Liloan Port",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 56
-        },
-        {
-          busId: 7,
-          name: "Ceres",
-          image: require("assets/ceresord.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "52345",
-          busType: "Ordinary",
-          company: "Ceres Liner",
-          departureTime: "01:00 PM",
-          arrivalTime: "12:00 Mid",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Bato",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 45
-        },
-        {
-          busId: 8,
-          name: "Sunrays",
-          image: require("assets/sunrays.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "80123",
-          busType: "Aircon",
-          company: "Sunrays Bus Lines",
-          departureTime: "07:00 AM",
-          arrivalTime: "10:30 AM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Alcoy",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 55
-        },
-        {
-          busId: 9,
-          name: "Sunrays",
-          image: require("assets/sunraysexp.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "78542",
-          busType: "Ordinary",
-          company: "Sunrays Bus Lines",
-          departureTime: "01:00 PM",
-          arrivalTime: "08:30 PM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Santander Liloan Port",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
-          availableSeats: 39
-        },
-        {
-          busId: 10,
-          name: "Sunrays",
-          image: require("assets/sunraysord.jpg"),
-          image1: require("assets/iconbus.png"),
-          plateNumber: "18956",
-          busType: "Ordinary",
-          company: "Sunrays Bus Lines",
-          departureTime: "04:00 AM",
-          arrivalTime: "08:30 PM",
-          departureDate: currentDate,
-          rlink: "Router Details",
-          fare: "Estimated Fare Php 120.00 - Php 180.00",
-          busRoute: {
-            from: "Southbus Terminal",
-            to: "Samboan",
-            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
-          },
+        // {
+        //   busId: 1,
+        //   name: "Sunrays",
+        //   image: require("assets/sunraysair.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "45211",
+        //   busType: "Aircon",
+        //   company: "Sunrays Bus Lines",
+        //   departureTime: "04:00 AM",
+        //   arrivalTime: "08:30 PM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Samboan",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   dropdown: {
+        //     adult: "Adult",
+        //     senior: "Senior Citizen",
+        //     student: "Student"
+        //   },
+        //   availableSeats: 56
+        // },
+        // {
+        //   busId: 2,
+        //   name: "Ceres",
+        //   image: require("assets/ceresor.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "55778",
+        //   busType: "Ordinary",
+        //   company: "Ceres Liner",
+        //   departureTime: "01:00 AM",
+        //   arrivalTime: "08:30 PM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Santander Liloan Port",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 50
+        // },
+        // {
+        //   busId: 3,
+        //   name: "Ceres",
+        //   image: require("assets/ceresair.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "871",
+        //   busType: "Aircon",
+        //   company: "Ceres Liner",
+        //   departureTime: "04:00 AM",
+        //   arrivalTime: "06:00 AM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Argao",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 45
+        // },
+        // {
+        //   busId: 4,
+        //   name: "Ceres",
+        //   image: require("assets/ceres.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "71289",
+        //   busType: "Ordinary",
+        //   company: "Ceres Liner",
+        //   departureTime: "01:00 AM",
+        //   arrivalTime: "10:00 PM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Bato",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 55
+        // },
+        // {
+        //   busId: 5,
+        //   name: "Ceres",
+        //   image: require("assets/ceresairc.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "78542",
+        //   busType: "Aircon",
+        //   company: "Ceres Liner",
+        //   departureTime: "07:00 PM",
+        //   arrivalTime: "12:00 Mid",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Argao",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 40
+        // },
+        // {
+        //   busId: 6,
+        //   name: "Sunrays",
+        //   image: require("assets/sunraysairc.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "58976",
+        //   busType: "Aircon",
+        //   company: "Sunrays Bus Lines",
+        //   departureTime: "04:00 AM",
+        //   arrivalTime: "11:30 PM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Santander Liloan Port",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 56
+        // },
+        // {
+        //   busId: 7,
+        //   name: "Ceres",
+        //   image: require("assets/ceresord.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "52345",
+        //   busType: "Ordinary",
+        //   company: "Ceres Liner",
+        //   departureTime: "01:00 PM",
+        //   arrivalTime: "12:00 Mid",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Bato",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 45
+        // },
+        // {
+        //   busId: 8,
+        //   name: "Sunrays",
+        //   image: require("assets/sunrays.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "80123",
+        //   busType: "Aircon",
+        //   company: "Sunrays Bus Lines",
+        //   departureTime: "07:00 AM",
+        //   arrivalTime: "10:30 AM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Alcoy",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 55
+        // },
+        // {
+        //   busId: 9,
+        //   name: "Sunrays",
+        //   image: require("assets/sunraysexp.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "78542",
+        //   busType: "Ordinary",
+        //   company: "Sunrays Bus Lines",
+        //   departureTime: "01:00 PM",
+        //   arrivalTime: "08:30 PM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Santander Liloan Port",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
+        //   availableSeats: 39
+        // },
+        // {
+        //   busId: 10,
+        //   name: "Sunrays",
+        //   image: require("assets/sunraysord.jpg"),
+        //   image1: require("assets/iconbus.png"),
+        //   plateNumber: "18956",
+        //   busType: "Ordinary",
+        //   company: "Sunrays Bus Lines",
+        //   departureTime: "04:00 PM",
+        //   arrivalTime: "08:30 PM",
+        //   departureDate: currentDate,
+        //   rlink: "Router Details",
+        //   fare: "Estimated Fare Php 120.00 - Php 180.00",
+        //   busRoute: {
+        //     from: "Southbus Terminal",
+        //     to: "Samboan",
+        //     address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        //   },
 
-          availableSeats: 45
-        }
+        //   availableSeats: 45
+        // }
       ]
     };
   },
   methods: {
+    defaultFilter(){
+
+      let search = {};
+      
+      if (this.to != "") {
+        this.filtering = true;
+      }
+      if (this.depart != "") {
+        this.filtering = true;
+      }
+
+
+      axios({url: 'http://localhost:8082/search',data:{ }, method: 'GET' })
+				.then(resp => {
+            // console.log(resp.data.buses);
+            this.buses = resp.data.buses;
+				})
+				.catch(err => {
+					console.log(err)
+				})
+
+    },
     filter() {
       if (this.to != "") {
         this.filtering = true;
       }
+
       let way = this.to.toLowerCase();
       let size = way.length;
       var tempArray = [];
@@ -305,9 +327,30 @@ export default {
       });
       this.filterArray = tempArray;
     },
-    // getTicket() {
-    //   console.log("getTicket");
-    // }
+    filterbytime() {
+      if (this.depart != "" && this.filterArray.length != 0) {
+        this.filteringbytime = true;
+        this.filtering = false;
+      }
+      let way = this.depart.toLowerCase();
+      var tempArray = [];
+      this.filterArray.forEach(element => {
+        let dtime = element.departureTime.toLowerCase();
+        if (dtime.includes(way)){
+          tempArray.push(element);
+        }
+      });
+      this.filterArrayBytime = tempArray;
+    },
+    getTicket() {
+      console.log("getTicket");
+    }
+  
+  
+  
+  
+  
+  
   },
   mounted() {
     EventBus.$on("displayBusDataOnModal", data => {
@@ -316,6 +359,16 @@ export default {
     });
   },
   search() {}
+  ,created(){
+    axios({url: 'http://localhost:8082/buses', method: 'GET' })
+				.then(resp => {
+            // console.log(resp.data.buses);
+            this.buses = resp.data.buses;
+				})
+				.catch(err => {
+					console.log(err)
+				})
+  }
 };
 </script>
 

@@ -3,7 +3,7 @@
         <b-row>
             <div class="col-sm-2">
             <br />
-            <b-img id="image" thumbnail fluid :src="bus.image" alt="Image 1"></b-img>
+            <b-img id="image" thumbnail fluid :src="imageHost+bus.image" alt="Image 1"></b-img>
 
             <p>{{ bus.name }} {{ bus.plateNumber }} . {{ bus.busType }}</p>
             </div>
@@ -35,6 +35,11 @@
 import { EventBus } from '../main';
 export default {
     name:"BusItem",
+    data(){
+        return {
+            imageHost: "http://localhost:8082"
+        }
+    },
     props:["bus"],
     methods:{
          getTicket:function(){

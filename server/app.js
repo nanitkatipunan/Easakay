@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const mongoose = require('mongoose');
 const User = require('./model/user.model')
+const Bus = require('./model/bus.model')
 const config = require('./key')
 const jwt = require('jsonwebtoken')
+const path = require('path')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +16,11 @@ app.use(cors())
 
 let url = 'mongodb://localhost:27017/easakayDB'
 
-let buses = [
+// app.use(express.static('images'))
+
+app.use('/public', express.static(path.join(__dirname, 'images')))
+
+// let buses = [
     // {
     //     busId: 1,
     //     name: "Sunrays",
@@ -203,8 +209,8 @@ let buses = [
     // {
     //     busId: 10,
     //     name: "Sunrays",
-    //     image: require("assets/sunraysord.jpg"),
-    //     image1: require("assets/iconbus.png"),
+    //     image: "/uploads/image.jpeg",
+    //     image1: "/uploads/image.jpeg",
     //     plateNumber: "18956",
     //     busType: "Ordinary",
     //     company: "Sunrays Bus Lines",
@@ -220,9 +226,64 @@ let buses = [
     //     },
 
     //     availableSeats: 45
-    // }
+    // }`
+// ]
+
+
+
+
+let buses = [
+    {
+        bus_id: 10,
+        name: "Sunrays",
+        image: "/public/ceres.jpg",
+        image1: "/public/iconbus.png",
+        plateNumber: "18956",
+        busType: "Ordinary",
+        company: "Sunrays Bus Lines",
+        departureTime: "04:00 AM",
+        arrivalTime: "08:30 PM",
+        departureDate: Date.now(),
+        rlink: "Router Details",
+        fare: "Estimated Fare Php 120.00 - Php 180.00",
+        busRoute: {
+            from: "Southbus Terminal",
+            to: "Samboan",
+            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        },
+        availableSeats: 45
+    },
+    {
+        bus_id: 11,
+        name: "Ceres",
+        image: "/public/ceres.jpg",
+        image1: "/public/iconbus.png",
+        plateNumber: "18956",
+        busType: "Ordinary",
+        company: "Ceres Bus Lines",
+        departureTime: "04:00 AM",
+        arrivalTime: "08:30 PM",
+        departureDate: Date.now(),
+        rlink: "Router Details",
+        fare: "Estimated Fare Php 120.00 - Php 180.00",
+        busRoute: {
+            from: "Southbus Terminal",
+            to: "Samboan",
+            address: "Natalio B. Bacalso Avenue, Cebu City, 6000 Cebu"
+        },
+        availableSeats: 45
+    }
 ]
 
+
+// for(var i =0; i< buses.length;i++){
+    //  let bus1 = new Bus(buses[0]);
+    //  bus1.save();
+    // console.log(bus1);
+    //  let bus2 = new Bus(buses[1]);
+    // bus2.save();
+    // console.log(bus2);
+// }    
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -275,10 +336,38 @@ app.post('/user/login', (req, res) => {
         })
 
 });
-app.get('/user/login/buses', function (req, res, next) {
-    res.json([
-        { buses }
-    ])
+
+app.get('/buses', function (req, res, next) {
+    res.json({buses : buses});
+});
+
+app.get('/buses/search', function (req, res, next) {
+
+    let to = req.query.to;
+    let depart = req.query.depart;
+      
+    let query = {};
+
+    if(to != null){
+        query["busRoute.to"] = to;
+    }
+
+    if(depart != null){
+        query.departureTime = depart;
+    }
+
+    Bus.find(query)
+        .then((data) => {
+            if (data) {
+                res.json({ data :data});
+            } else {
+                res.status(404).send('not found')
+            }
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+
 });
 
 
