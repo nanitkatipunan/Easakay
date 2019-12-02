@@ -1,6 +1,11 @@
 <template>
   <transition name="modal">
-    <b-modal id="modal-xl" size="xl" title="Easakay" ok-only ok-variant="outline-success" ok-title="RESERVE">
+    <b-modal  :visible="showModal"
+             ok-only 
+             ok-variant="outline-success" 
+             ok-title="RESERVE"
+             @hide="$emit('close')"
+             @ok="$emit('book')">
       <b-img id="image" thumbnail fluid :src="imageHost+bus.image" alt="Image 1"></b-img>
       <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
         <b-row>
@@ -81,7 +86,14 @@ export default {
       imageHost: "http://localhost:8082"
     };
   },
-  props: ["show", "bus"],
+  // props: ["value", "bus"],
+  props:{
+    showModal : Boolean,
+    bus: Object
+  },
+  mounted(){
+    this.test = this.showModal
+  },
   methods: {
     increment() {
       this.num++;

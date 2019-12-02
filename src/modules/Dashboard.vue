@@ -63,7 +63,7 @@
 <script>
 import BusList from "../components/BusList.vue";
 import Modal from "../components/Modal.vue";
-import { EventBus } from "../main";
+// import { EventBus } from "../main";
 import axios from 'axios';
 
 export default {
@@ -149,14 +149,14 @@ export default {
   
   
   },
-  mounted() {
-    EventBus.$on("displayBusDataOnModal", data => {
-      this.busInModal = data;
-      this.showModal = true;
-    });
-  }
+  // mounted() {
+  //   EventBus.$on("displayBusDataOnModal", data => {
+  //     this.busInModal = data;
+  //     this.showModal = true;
+  //   });
+  // },
   // search() {}
-  ,created(){
+  created(){
     axios({url: 'http://localhost:8082/buses', method: 'GET' })
 				.then(resp => {
             // console.log(resp.data.buses);

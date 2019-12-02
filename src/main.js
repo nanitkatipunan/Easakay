@@ -21,7 +21,7 @@ Vue.config.productionTip = false
 Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVue)
 
-export const EventBus = new Vue()
+// export const EventBus = new Vue()
 
 new Vue({
   router,

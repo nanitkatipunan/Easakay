@@ -26,26 +26,54 @@
             <b-form id="b-getTicket">
                 <b-button v-b-modal.modal-xl variant="outline-success" @click="getTicket">Get ticket</b-button>
             </b-form>
+
+            <Modal v-bind:showModal="isModalVisible" 
+                   v-bind:bus="bus" 
+                   v-on:book='book' 
+                   v-on:close='closeModal' />
             </div>
         </b-row>
     </div>
 </template>
 
 <script>
-import { EventBus } from '../main';
+// import { EventBus } from '../main';
+import  Modal  from './Modal.vue';
+
 export default {
     name:"BusItem",
     data(){
         return {
+            isModalVisible: false,
             imageHost: "http://localhost:8082"
         }
     },
+    components:{
+        Modal
+    },
     props:["bus"],
+    // mounted(){
+    //     EventBus.$on('ok', clickCount => {
+    //         console.log(`Oh, that's nice. It's gotten ${clickCount} clicks! :)`)
+    //     });
+    // },
     methods:{
-         getTicket:function(){
-             let bus = this.bus
-             EventBus.$emit('displayBusDataOnModal',bus);
-         }
+        //  getTicket:function(){
+        //      let bus = this.bus
+        //      EventBus.$emit('displayBusDataOnModal',bus);
+        //  }
+        getTicket() {
+           this.isModalVisible = true
+        },
+        book(){
+            if(this.isModalVisible == true)
+            console.log("BOOK TODO")
+        },
+        closeModal(){
+            console.log("CLOSE MODAL")
+            this.isModalVisible = false
+        }
+
      }
 }
 </script>
