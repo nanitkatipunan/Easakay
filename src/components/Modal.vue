@@ -1,14 +1,14 @@
 <template>
   <transition name="modal">
-    <b-modal id="modal-xl" size="xl" title="Easakay" >
-      <b-img id="image" thumbnail fluid :src="bus.image" alt="Image 1"></b-img>
+    <b-modal id="modal-xl" size="xl" title="Easakay" ok-only ok-variant="outline-success" ok-title="RESERVE">
+      <b-img id="image" thumbnail fluid :src="imageHost+bus.image" alt="Image 1"></b-img>
       <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
         <b-row>
           <div class="col-sm-2">
             <h2 style="font-size:150%;text-align:center">{{ bus.name }}</h2>
             <hr>
             <h5 style="text-align:center">{{ bus.departureTime}}</h5>
-            <b-img id="image1" thumbnail fluid :src="bus.image1" alt="Image 1"></b-img>
+            <b-img id="image1" thumbnail fluid :src="imageHost+bus.image1" alt="Image 1"></b-img>
             <h5 style="text-align:center">{{bus.arrivalTime}}</h5>
           </div>
           <div class="col-sm-7">
@@ -77,7 +77,8 @@ export default {
   data() {
     return {
       selectedItem: "",
-      num: 1
+      num: 1,
+      imageHost: "http://localhost:8082"
     };
   },
   props: ["show", "bus"],

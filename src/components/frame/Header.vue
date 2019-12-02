@@ -13,12 +13,12 @@
             id="text"
             type="button"
             class="ml-auto"
-          ><b-button variant="success">Sign In</b-button></b-nav>&nbsp;
+          ><b-button variant="success">Login</b-button></b-nav>&nbsp;
           <b-nav
             @click="redirect('/Register')"
             v-if="!this.$store.getters.isLoggedIn"
             type="button"
-          ><b-button variant="success"> Sign Up </b-button></b-nav>
+          ><b-button variant="success"> Register </b-button></b-nav>
     
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto" v-if="this.$store.getters.isLoggedIn" >
@@ -38,7 +38,7 @@
             <i class="fas fa-user fa-lg"></i>
           </template>
           <b-dropdown-item href="#"><router-link to="/PersonalInfo"> Profile </router-link></b-dropdown-item>
-          <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
+          <b-dropdown-item @click="logout">Logout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -98,6 +98,16 @@ export default {
         variant: "info"
       });
     }
+  //   ,created(){
+  //   axios({url: 'http://localhost:8082/posts', method: 'GET' })
+	// 			.then(resp => {
+  //           // console.log(resp.data.buses);
+  //           this.pusher = resp.data.pusher;
+	// 			})
+	// 			.catch(err => {
+	// 				console.log(err)
+	// 			})
+  // }
   }
 };
 </script>
