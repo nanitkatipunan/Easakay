@@ -1,42 +1,151 @@
 <template>
-  <div id="card">
-    <b-card-body>
-      <div class="circular" v-bind:style="{ 'background-image': 'url(  )' }">
-        <!-- <b-img :src="require('@/assets/NewProject.png')"></b-img> -->
-        <p id="p" class="text-center">"Value everyone's comfort <br/> in the world <br/>of travel"</p>
-        <center><button id="show-btn" @click="$bvModal.show('bv-modal-example')">Learn more</button></center>
-        <b-modal id="bv-modal-example" hide-footer>
-          <template v-slot:modal-title>
-           <router-link to="/">Easakay</router-link>
-          </template>
-          <div class="d-block text-center">
-            <h3>Easakay is a web application that caters the need </h3>
+  <b-card id="LargeContainer">
+    <div class="bv-example-row" id="container1" bg-variant="white" text-variant="black" ok-only>
+      <b-row>
+        <b-col>
+          <div class="col-lg-12">
+            <p id="p" class="text-center">
+              "Value everyone's comfort
+              <br>in the world
+              <br>of travel"
+            </p>
           </div>
-          <b-button class="bg-success" block @click="$bvModal.hide('bv-modal-example')" >Close Me</b-button>
-        </b-modal>
+        </b-col>
+        <b-col>
+          <div class="col-lg-12">
+            <b-carousel
+              id="carousel-fade"
+              style="text-shadow: 0px 0px 2px #000"
+              fade
+              indicators
+              img-width="1024"
+              img-height="480"
+            >
+              <b-carousel-slide
+                img-src="https://www.panaynews.net/wp-content/uploads/2019/07/cropped-Yanson-Group-of-Bus-Companies-Ceres-Bus-3-696x391.jpg"
+              ></b-carousel-slide>
+              <b-carousel-slide img-src></b-carousel-slide>
+              <b-carousel-slide img-src="https://www.travelingcebu.com/images/csbt2.jpg"></b-carousel-slide>
+            </b-carousel>
+          </div>
+        </b-col>
+      </b-row>
+    </div>
+    <br>
+    <br>
+    <center>
+      <b-button v-b-modal.modal-xl variant="outline-success">Learn More</b-button>
+    </center>
+    <b-modal id="modal-xl" size="xl" title="Easakay">
+      <div class="d-block text-center">
+        <div class="container">
+          <div class ="card">
+            <h2>Easakay is a web application that  allows passengers 
+          to know the information of the bus such as bus location, bus route and 
+         bus schedule. With Easakay, passengers can reserve seats with a given time frame.</h2>
+            <div class="card">
+            <p id="misvis">MISSION</p>
+            <h2> To give passengers an easy access about the bus schedules for a convenient and hassle free travel in an innovative way. </h2>
+            </div>
+            <div class="card">
+            <p id="misvis"> VISION </p>
+            <h2> We envision to provide a hassle free travel to all passengers all over the world. </h2>
+            </div>
       </div>
-    </b-card-body>
-  </div>
+      </div>
+      </div>
+     
+     &nbsp; <center><p id="us">DEVELOPERS</p></center>
+      
+      <div class="row">
+        <div class="col-sm-3">
+            <center> <div class="card">&nbsp;
+           <b-img id="imgMember" :src="require('assets/nanit.jpg')" fluid alt="Fluid image"></b-img>
+              <b><p id="pMember">Nanit Katipunan</p></b>
+              <p id="pMember">Project Manager</p>
+              <p id="pMember">nanit.katipunan@student.passerellesnumeriques.org</p>
+            </div></center>
+          </div>
+      <br>
+        <div class="col-sm-3">
+            <center><div class="card">&nbsp;
+            <b-img id="imgMember" :src="require('assets/tanya.png')" fluid alt="Fluid image"></b-img>
+              <b><p id="pMember">Cristina Bustamante</p></b>
+              <p id="pMember">Front End Developer</p>
+              <p id="pMember">cristina.bustamante@student.passerellesnumeriques.org</p>
+            </div></center>
+        </div>
+      <br>
+        <div class="col-sm-3">
+            <center><div class="card">&nbsp;
+            <b-img id="imgMember" :src="require('assets/mars.jpg')" fluid alt="Fluid image"></b-img>
+              <b><p id="pMember">Ma.Lyn Gamboa</p></b>
+              <p id="pMember">Back End Developer</p>
+              <p id="pMember">malyn.gamboa@student.passerellesnumeriques.org</p>
+            </div></center>
+        </div>
+      <br>
+        <div class="col-sm-3">
+            <center><div class="card">&nbsp;
+              <b-img id="imgMember" :src="require('assets/yubert.png')" fluid alt="Fluid image"></b-img>
+              <b><p id="pMember">Yubert Mariscal</p></b>
+              <p id="pMember">Front End Developer</p>
+              <p id="pMember">yubert.mariscal@student.passerellesnumeriques.org</p>
+            </div></center>
+          </div>
+        </div>
+    </b-modal>
+    
+  </b-card>
+  
 </template>
-<style> 
+
+<script>
+  export default {
+  }
+</script>
+
+<style>
+
+.container {
+  border: 50% black;
+
+}
+#container1 {
+  background-size: cover;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAA1BMVEUksk7fqXNLAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AcUIAAFkqh/QAAAAAElFTkSuQmCC");
+  border: solid green 2px;
+  margin-right: 1px;
+
+  padding-top: 1%;
+  width: 100%;
+  padding-bottom: 1%;
+}
 #p {
   font-size: 50px;
   margin-top: 10%;
-  font-style: arial;
-  
-}
-#show-btn {
-  background-color: green;
+  font-style: verdana;
+  font-weight: bold;
   color: white;
-  padding-left: 2%;
-  padding-right: 2%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  border-radius: 10%;
+}
+#misvis {
+  font-size: 300%;
+  font-weight: bold;
+  font-family:arial;
+  color:green;
+}
+#us {
+  font-size: 350%;
 }
 div {
-  /* background:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvn1vhmcUVSTg3nxpYw6rfKXaApuXrjSnv4t62ozKeet_xUaceoQ&s);*/
-  background-repeat: no-repeat;
   position: cover;
 }
+ #imgMember {
+  width: 50%;
+  height: 30%;
+  margin-left: 0%;
+}
+#pMember {
+  margin-top: 0%;
+} 
 </style>
