@@ -1,6 +1,6 @@
 <template>
   <b-card id="LargeContainer">
-    <div class="bv-example-row" id="container1" bg-variant="white" text-variant="black">
+    <div class="bv-example-row" id="container1" bg-variant="white" text-variant="black" ok-only>
       <b-row>
         <b-col>
           <div class="col-lg-12">
@@ -34,9 +34,9 @@
     <br>
     <br>
     <center>
-      <b-button v-b-modal.modal-xl variant="outline-success" >Learn More</b-button>
+      <b-button v-b-modal.modal-xl variant="outline-success">Learn More</b-button>
     </center>
-    <b-modal id="modal-xl" size="xl" title="Easakay" ok-only ok-variant="outline-success" ok-title="Ok">
+    <b-modal id="modal-xl" size="xl" title="Easakay">
       <div class="d-block text-center">
         <div class="container">
           <div class ="card">
@@ -54,37 +54,44 @@
       </div>
       </div>
       </div>
-      <br>
-      <br>
-      <center><p id="us">Who we are</p></center>
-      <br>
+     
+     &nbsp; <center><p id="us">DEVELOPERS</p></center>
+      
       <div class="row">
         <div class="col-sm-3">
-            <div class="card">
-            <b-img id="imgMember" :src="require('assets/nanit.jpg')" fluid alt="Fluid image"></b-img>
-              <p id="pMember">Nanit Katipunan</p>
-            </div>
+            <center> <div class="card">&nbsp;
+           <b-img id="imgMember" :src="require('assets/nanit.jpg')" fluid alt="Fluid image"></b-img>
+              <b><p id="pMember">Nanit Katipunan</p></b>
+              <p id="pMember">Project Manager</p>
+              <p id="pMember">nanit.katipunan@student.passerellesnumeriques.org</p>
+            </div></center>
           </div>
       <br>
         <div class="col-sm-3">
-            <div class="card">
+            <center><div class="card">&nbsp;
             <b-img id="imgMember" :src="require('assets/tanya.png')" fluid alt="Fluid image"></b-img>
-              <p id="pMember">Cristina Bustamante</p>
-            </div>
+              <b><p id="pMember">Cristina Bustamante</p></b>
+              <p id="pMember">Front End Developer</p>
+              <p id="pMember">cristina.bustamante@student.passerellesnumeriques.org</p>
+            </div></center>
         </div>
       <br>
         <div class="col-sm-3">
-            <div class="card">
+            <center><div class="card">&nbsp;
             <b-img id="imgMember" :src="require('assets/mars.jpg')" fluid alt="Fluid image"></b-img>
-              <p id="pMember">Ma.Lyn Gamboa</p>
-            </div>
+              <b><p id="pMember">Ma.Lyn Gamboa</p></b>
+              <p id="pMember">Back End Developer</p>
+              <p id="pMember">malyn.gamboa@student.passerellesnumeriques.org</p>
+            </div></center>
         </div>
       <br>
         <div class="col-sm-3">
-            <div class="card">
+            <center><div class="card">&nbsp;
               <b-img id="imgMember" :src="require('assets/yubert.png')" fluid alt="Fluid image"></b-img>
-              <p id="pMember">Yubert Mariscal</p>
-            </div>
+              <b><p id="pMember">Yubert Mariscal</p></b>
+              <p id="pMember">Front End Developer</p>
+              <p id="pMember">yubert.mariscal@student.passerellesnumeriques.org</p>
+            </div></center>
           </div>
         </div>
     </b-modal>
@@ -142,3 +149,4 @@ div {
   margin-top: 0%;
 } 
 </style>
+

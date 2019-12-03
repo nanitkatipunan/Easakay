@@ -364,70 +364,6 @@ let items = [
     }
 ]
 
-// for(var i =0; i< buses.length;i++){
-// let bus1 = new Bus(buses[0]);
-// bus1.save();
-// console.log(bus1);
-// let bus2 = new Bus(buses[1]);
-// bus2.save();
-// console.log(bus2);
-// let bus3 = new Bus(buses[2]);
-// bus3.save();
-// console.log(bus3);
-// let bus4 = new Bus(buses[3]);
-// bus4.save();
-// console.log(bus4);
-// let bus5 = new Bus(buses[4]);
-// bus5.save();
-// console.log(bus5);
-// let bus6 = new Bus(buses[5]);
-// bus6.save();
-// console.log(bus6);
-// let bus7 = new Bus(buses[6]);
-// bus7.save();
-// console.log(bus7);
-// let bus8 = new Bus(buses[7]);
-// bus8.save();
-// console.log(bus8);
-// let bus9 = new Bus(buses[8]);
-// bus9.save();
-// console.log(bus9);
-// let bus10 = new Bus(buses[9]);
-// bus10.save();
-// console.log(bus10);
-
-//for the route details
-// let route1 = new Route(items[0]);
-// route1.save();
-// console.log(route1);
-// let route2 = new Route(items[1]);
-// route2.save();
-// console.log(route2);
-// let route3 = new Route(items[2]);
-// route3.save();
-// console.log(route3);
-// let route4 = new Route(items[3]);
-// route4.save();
-// console.log(route4);
-// let route5 = new Route(items[4]);
-// route5.save();
-// console.log(route5);
-// let route6 = new Route(items[5]);
-// route6.save();
-// console.log(route6);
-// let route7 = new Route(items[6]);
-// route7.save();
-// console.log(route7);
-// let route8 = new Route(items[7]);
-// route8.save();
-// console.log(route8);
-// let route9 = new Route(items[8]);
-// route9.save();
-// console.log(route9);
-// let route10 = new Route(items[9]);
-// route10.save();
-// console.log(route10);
-// }    
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -513,32 +449,6 @@ app.get('/buses/search', function (req, res, next) {
         })
 
 });
-
-// router.get('/', (req, res, next) => {
-//     Post.find({}, {title: true}).exec((err, posts) => {
-//         res.render('index', {posts});
-//     });
-// });
-
-// router.get('/posts/:id', (req, res, next) => {
-//     Post.findOne({_id: req.params.id}).exec((err, post) => {
-//         res.render('post', {post});
-//     });
-// });
-
-// router.post('/posts/:id', (req, res, next) => {
-//     Post.findByIdAndUpdate(req.params.id, { body: req.body.body }, (err, post) => {
-//             let Pusher = require('pusher');
-//             let pusher = new Pusher({
-//                 appId: process.env.PUSHER_APP_ID,
-//                 key: process.env.PUSHER_APP_KEY,
-//                 secret: process.env.PUSHER_APP_SECRET,
-//                 cluster: process.env.PUSHER_APP_CLUSTER
-//             });
-//             pusher.trigger('notifications', 'post_updated', post, req.headers['x-socket-id']);
-//             res.send('');
-//         });
-// });
 
 module.exports = router;
 app.get('/items', function (req, res, next) {

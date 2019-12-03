@@ -13,12 +13,12 @@
             id="text"
             type="button"
             class="ml-auto"
-          ><b-button variant="success">Login</b-button></b-nav>&nbsp;
+          ><b-button variant="success">Sign In</b-button></b-nav>&nbsp;
           <b-nav
             @click="redirect('/Register')"
             v-if="!this.$store.getters.isLoggedIn"
             type="button"
-          ><b-button variant="success"> Register </b-button></b-nav>
+          ><b-button variant="success"> Sign Up </b-button></b-nav>
     
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto" v-if="this.$store.getters.isLoggedIn" >
@@ -26,10 +26,10 @@
             <i class="fas fa-home  fa-lg"></i>
         </b-nav-item>
         <b-nav-item>
-           <i class="fas fa-map-marker-alt fa-lg"  v-b-popover.hover.top="" @click="redirect('/googlemap')" title="Track Location"></i>
+           <i class="fas fa-map-marker-alt fa-lg"  v-b-popover.hover.top="" title="Track Location"></i>
         </b-nav-item>
         <b-nav-item>
-           <i class="fas fa-bell fa-lg"  v-b-popover.hover.top="" @click="notification" title="Notification"></i>
+           <i class="fas fa-bell fa-lg"  v-b-popover.hover.top="" title="Notification"></i>
         </b-nav-item>
 
         <b-nav-item-dropdown right>
@@ -37,8 +37,8 @@
           <template v-slot:button-content>
             <i class="fas fa-user fa-lg"></i>
           </template>
-          <b-dropdown-item href="#"><router-link to="/PersonalInfo"> Profile </router-link></b-dropdown-item>
-          <b-dropdown-item @click="logout">Logout</b-dropdown-item>
+          <b-dropdown-item href="#" v-on:click="redirect('/personalInfo')"> Profile </b-dropdown-item>
+          <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -48,8 +48,6 @@
 </template>
 
 <script>
-var today = new Date();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 export default {
   data() {
     return {
@@ -68,47 +66,7 @@ export default {
     },
     goToHome(){
        this.$router.push('/dashboard')
-    },
-    
-    notification() {
-      // Use a shorter name for this.$createElement
-      const h = this.$createElement;
-      // Increment the toast count
-      // this.count++;
-      // Create the message
-      const vNodesMsg = h("p", { class: ["text-center", "mb-0"] }, [
-        h("b-spinner", { props: { type: "grow", small: true } }),
-        // " Flashy ",
-        h("strong", {}, "Makabuang Ning Project Dah"),
-        // ` message #${this.count} `,
-        h("b-spinner", { props: { type: "grow", small: true } })
-      ]);
-      // Create the title
-      const vNodesTitle = h(
-        "div",
-        { class: ["d-flex", "flex-grow-1", "align-items-baseline", "mr-2"] },
-        [
-          h("strong", { class: "mr-2" }, "Easakay"),
-          h("small", { class: "ml-auto text-italics" }, time)
-        ]
-      );
-      // Pass the VNodes as an array for message and title
-      this.$bvToast.toast([vNodesMsg], {
-        title: [vNodesTitle],
-        solid: true,
-        variant: "info"
-      });
     }
-  //   ,created(){
-  //   axios({url: 'http://localhost:8082/posts', method: 'GET' })
-	// 			.then(resp => {
-  //           // console.log(resp.data.buses);
-  //           this.pusher = resp.data.pusher;
-	// 			})
-	// 			.catch(err => {
-	// 				console.log(err)
-	// 			})
-  // }
   }
 };
 </script>
@@ -161,5 +119,7 @@ color: aliceblue;
   color: white;
   font-size: 20px;
   font-style: Impact, Charcoal, sans-serif;
+
 }
-</style>s
+</style>
+
