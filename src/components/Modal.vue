@@ -1,6 +1,7 @@
 <template>
-  <transition name="modal">
+  <!-- <transition name="modal"> -->
     <b-modal  :visible="showModal"
+            size="xl"
              ok-only 
              ok-variant="outline-success" 
              ok-title="RESERVE"
@@ -42,6 +43,7 @@
       <div class="bv-example-row" id="jumbo1" bg-variant="white" text-variant="black">
         <b-row>
           <b-col sm="2">
+            <p>Passengers</p>
             <b-form-select
               variant="outline-success"
               aria-labelledby="dropdownMenuButton"
@@ -73,7 +75,7 @@
         </b-row>
       </div>
     </b-modal>
-  </transition>
+  <!-- </transition> -->
 </template>
 
 <script>

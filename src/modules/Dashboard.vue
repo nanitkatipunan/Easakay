@@ -33,11 +33,11 @@
             ></b-form-input>
           </div>
         </b-col>
-        <b-col>
+        <!-- <b-col>
           <div class="col-lg-12">
             <b-button variant="outline-success">Search</b-button>
           </div>
-        </b-col>
+        </b-col> -->
       </b-row>
     </div>
     <br>

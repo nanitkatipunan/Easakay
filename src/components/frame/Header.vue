@@ -69,6 +69,7 @@ export default {
     goToHome(){
        this.$router.push('/dashboard')
     },
+    
     notification() {
       // Use a shorter name for this.$createElement
       const h = this.$createElement;

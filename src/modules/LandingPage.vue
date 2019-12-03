@@ -34,9 +34,9 @@
     <br>
     <br>
     <center>
-      <b-button v-b-modal.modal-xl variant="outline-success">Learn More</b-button>
+      <b-button v-b-modal.modal-xl variant="outline-success" >Learn More</b-button>
     </center>
-    <b-modal id="modal-xl" size="xl" title="Easakay">
+    <b-modal id="modal-xl" size="xl" title="Easakay" ok-only ok-variant="outline-success" ok-title="Ok">
       <div class="d-block text-center">
         <div class="container">
           <div class ="card">
