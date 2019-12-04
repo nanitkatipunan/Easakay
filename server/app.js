@@ -13,6 +13,7 @@ const path = require('path')
 const router = require('express').Router();
 // const Post = require('./../models/post');
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
@@ -378,6 +379,21 @@ app.get('/', function (req, res) {
     res.send('hello world')
 });
 
+    app.post('/user/profile', (req, res) => {
+        console.log("Update na daw ni")
+        console.log(req.body)
+        // let profile = new Profile(req.body.data)
+        User.findByIdAndUpdate({_id: "5de7a00d4fb7f5118c340e1e"}, req.body.data)
+            .then(() => {
+                console.log('saved')
+                res.json({ message: "saved" })
+            })
+            .catch(err => {
+                res.status(500).send(err)
+            })
+    
+    });
+    
 app.post('/user/register', (req, res) => {
     console.log(req.body)
     let user = new User(req.body.data)

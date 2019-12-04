@@ -3,7 +3,7 @@
     <div>
       <center>
         <h1>Profile</h1>
-        <hr />
+        <hr>
       </center>
     </div>
     <div class="mt-4">
@@ -26,24 +26,21 @@
                 <input
                   type="file"
                   id="file"
-                  @change="handleFileUpload()"
+                  @change="encodeToBase64"
                   ref="file"
+                  accept="file/*"
                   style="display:none"
-                />
-                <center>
+                >
+                <!-- <center>
                   <br />
-                  <h1>Hi {{Uname}}</h1>
-                  <button
-                    :disabled="file.length"
-                    class="btn btn-outline-primary"
-                    @click="submit"
-                  >Upload</button>
-                </center>
+                   <h1>Hi {{Uname}}</h1>
+                  <button :disabled="file.length" class="btn btn-outline-primary" @click="submit">Upload</button>
+                </center>-->
               </span>
             </div>
           </b-col>
           <b-col cols="8">
-           <div class="form-group">
+            <div class="form-group">
               <label for="username" class="bmd-label-floating">Username</label>
               <b-form-input
                 required
@@ -57,16 +54,7 @@
               <label for="email" class="bmd-label-floating">Email</label>
               <b-form-input required type="email" class="form-control" id="Email" v-model="email"></b-form-input>
             </div>
-            <!-- <div class="form-group">
-              <label for="address" class="bmd-label-floating">Address</label>
-              <b-form-input
-                required
-                type="text"
-                class="form-control"
-                id="Address"
-                v-model="address"
-              ></b-form-input>
-            </div>-->
+
             <div class="form-group">
               <label for="pwd" class="bmd-label-floating">Password</label>
               <b-form-input
@@ -85,13 +73,14 @@
                 @click="save"
               >Save changes</button>
             </center>
+            <br>
           </b-col>
         </b-row>
       </b-container>
     </div>
 
-    <br />
-    <br />
+    <br>
+    <br>
   </div>
 </template>
 
@@ -101,63 +90,84 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      imgUrl: "https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg",
+      imgUrl:
+        "https://lakewangaryschool.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg",
       file: "",
       username: "",
       email: "",
       password: "",
-      Uname: sessionStorage.getItem("Username")
+      Uname: sessionStorage.getItem("Username"),
+      imageDetail: null
     };
   },
   methods: {
     save: function(e) {
       e.preventDefault();
+      let data = {
+        username: this.username,
+        password: this.password,
+        email: this.email,
+        image: this.imgUrl
+      };
       sessionStorage.setItem("Username", this.username),
         sessionStorage.setItem("Email", this.email),
         sessionStorage.setItem("Password", this.password),
-        // AUTH.save(this.username, this.email, this.password);
-        (this.username = ""),
-        (this.email = ""),
-        (this.password = "");
+
+        console.log(data);
+        // axios
+        //   .post("http://localhost:8082/user/profile", data, {
+        //     headers: {
+        //       "Content-Type": "multipart/form-data"
+        //     }
+        //   })
+
+ axios.post("http://localhost:8082/user/profile", {data: data})
+
+          .then(res => {
+            (this.username = ""), (this.email = ""), (this.password = "");
+            console.log(res);
+
+            this.imgUrl = res.data.filename;
+          })
+          .catch(err => {
+            console.log(err);
+          });
+          
     },
     addImage() {
       $("#images")[0].click();
     },
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
+      console.log(this.file);
       this.imgUrl = URL.createObjectURL(this.file);
     },
-
-    submit() {
-      /*
-                Initialize the form data
-            */
-      let formData = new FormData();
-       formData.append('img', this.file)
-      //  formData.append('username', this.username)
-      //  formData.append('email', this.email)
-      //  formData.append('password', this.password)
-
-      /*
-                Add the form data we need to submit
-            */
-      /*
-          Make the request to the POST /single-file URL
-        */
-      axios
-        .post("http://localhost:3000/uploadSingle", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        })
-        .then(res => {
-          console.log(res);
-
-          this.imgUrl = res.data.filename;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    encodeToBase64(event) {
+      event.preventDefault();
+      const file2 = event.target.files[0];
+      const canvas = document.createElement("canvas");
+      canvas.getContext("2d");
+      const reader = new FileReader();
+      reader.onload = event => {
+        const img = new Image();
+        img.onload = () => {
+          this.image = canvas
+            .toDataURL("image/png")
+            .replace(/^data:image\/(png|jpg);base64,/, "");
+          // console.log("RESULT/png", this.image);
+        };
+        img.src = event.target.result;
+        // console.log("RESULT!", img.src);
+        var a = document.getElementById("file").value;
+        var b = a.split("\\");
+        this.imageDetail = { filename: b[2], image: img.src };
+        console.log(this.imageDetail);
+        this.imgUrl = img.src;
+      };
+      reader.readAsDataURL(file2);
+      var temp = document.getElementById("file").value.split("\\");
+      this.file = temp[2];
+      this.uploaded = true;
     }
   }
 };
@@ -165,18 +175,18 @@ export default {
 
 <style scoped>
 #container {
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 .card {
   background-color: transparent;
   border: 2px solid;
 }
 #userIcon {
-  width: 80%;
+  width: 100%;
   height: 60%;
-  margin-left: 60px;
-  margin-top: 10px;
+  margin-left: 10px;
+  margin-top: 13%;
 }
 .mt-4 {
   border: solid green 1px;
@@ -188,7 +198,7 @@ export default {
   border: solid green 1px;
 }
 .btn-outline-primary {
-  color: #22e932;
+  color: green;
   border: solid green 1px;
 }
 hr {

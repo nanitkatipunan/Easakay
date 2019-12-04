@@ -11,7 +11,7 @@ app.use(cors())
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads')
+        cb(null, './uploads')
     },
     filename: function (req, file, cb) {
         var filename = "uploads_"+Date.now(new Date()).toString() +"_"+ file.originalname
@@ -36,8 +36,8 @@ app.post('/uploadSingle', upload.single('img'), (req, res, next) => {
         return next(error)
     }
     else {
-        store(img.filename)
-        img.filename =  'http://localhos:3000/files/' + img.filename
+      
+        img.filename =  'http://localhost:3000/files/' + img.filename
         res.send(img )
     }
 })
