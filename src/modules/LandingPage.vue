@@ -133,7 +133,7 @@
   font-weight: bold;
   font-family:arial;
   color:green;
-}
+}s
 #us {
   font-size: 350%;
 }
